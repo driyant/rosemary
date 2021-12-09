@@ -40,7 +40,7 @@ const Homepage = () => {
           d="flex"
           justifyContent="space-between"
           alignItems="center"
-          px={{ base: "0", lg: "2rem" }}
+          px={{ base: "0", lg: "3rem" }}
           // pos={{base : 'relative', lg: "static"}}
           overflowX="hidden"
         >
@@ -51,10 +51,12 @@ const Homepage = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Image src={rosemaryWhite} alt="Rosemary" />
-            <Heading fontWeight="600" color="#ffffff">
-              Rosemary
-            </Heading>
+            <Link to="/" style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+              <Image src={rosemaryWhite} alt="Rosemary" />
+              <Heading fontWeight="600" color="#ffffff">
+                Rosemary
+              </Heading>
+            </Link>
           </Box>
           {/*  End Logo wrapper */}
           {/* Naviation Links */}
@@ -200,8 +202,8 @@ const Homepage = () => {
         {/* End Navbar */}
         <Box
           maxWidth="80%"
-          marginTop={{ base: "14rem", md: "20rem" }}
-          marginLeft="1rem"
+          marginTop={{ base: "14rem", md: "20rem", lg: "15rem" }}
+          marginLeft={{ base: "1.4rem", lg: "4.5rem" }}
           d={isOpen ? "none" : "block"}
           transition="all 1s ease-in-out"
         >
