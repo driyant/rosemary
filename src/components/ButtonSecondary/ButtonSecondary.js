@@ -1,5 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 
 const ButtonSecondary = (props) => {
   return (
@@ -11,8 +13,27 @@ const ButtonSecondary = (props) => {
         p="5px"
         textTransform="uppercase"
         w="200px"
+        marginBottom={props.marginBottom}
+        marginTop={props.marginTop}
       >
-        {props.children}
+        <Link
+          to="/menu"
+          style={{
+            border: "2px solid grey",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexFlow: "row nowrap",
+            fontFamily: "var(--Bebas-Neue)",
+            letterSpacing: "2px",
+            fontWeight: "500",
+          }}
+        >
+          {props.children}
+          <BsArrowRight size={22} />
+        </Link>
       </Box>
     </>
   );

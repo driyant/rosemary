@@ -29,9 +29,16 @@ const Nav = () => {
         px={{ base: "0", lg: "3rem" }}
         overflowX="hidden"
         zIndex="6"
+        pos="fixed"
+        bgColor="#FFFFFF"
       >
         {/*  Logo wrapper */}
-        <Box d="flex" flexDir="row" justifyContent="center" alignItems="center">
+        <Box 
+          d="flex" 
+          flexDir="row" 
+          justifyContent="center" 
+          alignItems="center"
+        >
           <Link
             as={ReachLink}
             to="/"
@@ -46,7 +53,7 @@ const Nav = () => {
             }}
           >
             <Image src={rosemary} alt="Rosemary" h="64px" w="64px" />
-            <Heading fontWeight="600" color="#00000">
+            <Heading fontWeight="600" color="#00000" fontFamily="var(--Libre-Baskerville)">
               Rosemary
             </Heading>
           </Link>
@@ -54,7 +61,7 @@ const Nav = () => {
         {/*  End Logo wrapper */}
         {/* Naviation Links */}
         <UnorderedList
-          color={{ base: "#FFFFFF", lg: "rgba(88, 88, 88, 0.8)" }}
+          color={{ base: "#FFFFFF", lg: "#000000" }}
           textTransform={{ base: "capitalize", lg: "uppercase" }}
           pos={{ base: "fixed", lg: "static" }}
           w={{ base: "100%", lg: "auto" }}

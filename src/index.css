@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
   --Bebas-Neue: "Bebas Neue", cursive;
   --Montserrat : "Montserrat", sans-serif;
   --Libre-Baskerville : "Libre Baskerville", serif;
+  --Poppins : 'Poppins', sans-serif;
 }
 
 body {
@@ -15,7 +17,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
 code {

@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import ButtonSecondary from "../../components/ButtonSecondary/ButtonSecondary";
 import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import { useBoolean } from "@chakra-ui/hooks";
-import { BsArrowRight } from "react-icons/bs";
 import bgImage from "../../images/resort.jpg";
 import rosemaryWhite from "../../images/rosemary-white.png";
 
@@ -41,7 +40,6 @@ const Homepage = () => {
           justifyContent="space-between"
           alignItems="center"
           px={{ base: "0", lg: "3rem" }}
-          // pos={{base : 'relative', lg: "static"}}
           overflowX="hidden"
         >
           {/*  Logo wrapper */}
@@ -51,9 +49,17 @@ const Homepage = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Link to="/" style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Image src={rosemaryWhite} alt="Rosemary" />
-              <Heading fontWeight="600" color="#ffffff">
+              <Heading fontWeight="600" color="#ffffff" fontFamily="var(--Libre-Baskerville)">
                 Rosemary
               </Heading>
             </Link>
@@ -81,7 +87,10 @@ const Homepage = () => {
             transition="0.5s ease"
           >
             <ListItem
-              fontFamily={{base : "var(--Libre-Baskerville)", lg: "var(--Bebas-Neue)"}}
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
               listStyleType="none"
               my={{ base: "1.5rem", lg: "auto" }}
               mx={{ base: "auto", lg: "1.5rem" }}
@@ -96,7 +105,10 @@ const Homepage = () => {
               <Link to="/discover">discover</Link>
             </ListItem>
             <ListItem
-              fontFamily={{base : "var(--Libre-Baskerville)", lg: "var(--Bebas-Neue)"}}
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
               fontSize={{ base: "1.8rem", lg: "1.6rem" }}
               mx={{ base: "auto", lg: "1rem" }}
               listStyleType="none"
@@ -111,7 +123,10 @@ const Homepage = () => {
               <Link to="/menu">our menu</Link>
             </ListItem>
             <ListItem
-              fontFamily={{base : "var(--Libre-Baskerville)", lg: "var(--Bebas-Neue)"}}
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
               fontSize={{ base: "1.8rem", lg: "1.6rem" }}
               listStyleType="none"
               _hover={{
@@ -127,7 +142,10 @@ const Homepage = () => {
             </ListItem>
             <ListItem
               listStyleType="none"
-              fontFamily={{base : "var(--Libre-Baskerville)", lg: "var(--Bebas-Neue)"}}
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
               fontSize={{ base: "1.8rem", lg: "1rem" }}
               borderBottom="1px solid white"
               _hover={{
@@ -195,14 +213,12 @@ const Homepage = () => {
             </Box>
           </Box>
           {/* End Hamburger */}
-          <ButtonPrimary>
-            book table
-          </ButtonPrimary>
+          <ButtonPrimary>book table</ButtonPrimary>
         </Box>
         {/* End Navbar */}
         <Box
           maxWidth="80%"
-          marginTop={{ base: "14rem", md: "20rem", lg: "15rem" }}
+          marginTop={{ base: "10rem", md: "20rem", lg: "13rem" }}
           marginLeft={{ base: "1.4rem", lg: "4.5rem" }}
           d={isOpen ? "none" : "block"}
           transition="all 1s ease-in-out"
@@ -212,6 +228,7 @@ const Homepage = () => {
             fontFamily="var(--Bebas-Neue)"
             letterSpacing="1.5px"
             fontWeight="500"
+            textTransform="uppercase"
           >
             rosemary restaurant
           </Heading>
@@ -224,26 +241,7 @@ const Homepage = () => {
             "A good restaurant is like a vacation; it transports you, and it
             becomes a lot more than just about the food"
           </Text>
-          <ButtonSecondary>
-            <Link
-              to="/menu"
-              style={{
-                border: "2px solid grey",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                flexFlow: "row nowrap",
-                fontFamily: "var(--Bebas-Neue)",
-                letterSpacing: "2px",
-                fontWeight: "500",
-              }}
-            >
-              check the menu
-              <BsArrowRight size={22} />
-            </Link>
-          </ButtonSecondary>
+          <ButtonSecondary>check the menu</ButtonSecondary>
         </Box>
       </Box>
     </>
