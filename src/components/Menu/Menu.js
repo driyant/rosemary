@@ -7,7 +7,7 @@ const Menu = () => {
       <Box
         d="flex"
         flexFlow="column"
-        width={{ base: "100%", lg: "49%" }}
+        width={{ base: "100%", lg: "100%" }}
         px="1rem"
         mt="4rem"
       >

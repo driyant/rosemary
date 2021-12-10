@@ -37,14 +37,14 @@ const OurMenu = () => {
         </Box>
       </Header>
       <Box as="main" d="flex" justifyContent="center" alignItems="center">
-        <Container my="2rem" maxWidth={{ lg: "90%" }}>
+        <Container my={{ base: "2rem", lg: "5rem" }} maxWidth={{ lg: "90%" }}>
           <SimpleGrid
             minChildWidth="120px"
             spacing="10px"
-            transition= "all 0.5s ease"
+            transition="all 0.5s ease"
           >
-            <Box 
-              textAlign="center" 
+            <Box
+              textAlign="center"
               h="40px"
               d="flex"
               justifyContent="center"
@@ -56,13 +56,13 @@ const OurMenu = () => {
               _hover={{
                 border: "1px solid #CD916D",
                 color: "#CD916D",
-                transition: "0.5s ease"
+                transition: "0.5s ease",
               }}
             >
               ALL
             </Box>
-            <Box  
-              textAlign="center" 
+            <Box
+              textAlign="center"
               h="40px"
               d="flex"
               justifyContent="center"
@@ -74,13 +74,13 @@ const OurMenu = () => {
               _hover={{
                 border: "1px solid #CD916D",
                 color: "#CD916D",
-                transition: "0.5s ease"
+                transition: "0.5s ease",
               }}
             >
               ENTREE
             </Box>
-            <Box  
-              textAlign="center" 
+            <Box
+              textAlign="center"
               h="40px"
               d="flex"
               justifyContent="center"
@@ -92,13 +92,13 @@ const OurMenu = () => {
               _hover={{
                 border: "1px solid #CD916D",
                 color: "#CD916D",
-                transition: "0.5s ease"
+                transition: "0.5s ease",
               }}
             >
               DISHES
             </Box>
-            <Box  
-              textAlign="center" 
+            <Box
+              textAlign="center"
               h="40px"
               d="flex"
               justifyContent="center"
@@ -110,7 +110,7 @@ const OurMenu = () => {
               _hover={{
                 border: "1px solid #CD916D",
                 color: "#CD916D",
-                transition: "0.5s ease"
+                transition: "0.5s ease",
               }}
             >
               APPETIZER
