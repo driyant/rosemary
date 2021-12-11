@@ -181,7 +181,7 @@ const Reservation = () => {
   return (
     <>
       <Nav />
-      <Header bgImage={beachResort} bgColor="rgba(0, 0, 0, 0.5)">
+      <Header bgImage={beachResort} bgColor="rgba(0, 0, 0, 0.6)">
         <Box
           textAlign="center"
           d="flex"

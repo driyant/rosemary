@@ -181,17 +181,10 @@ const Nav = () => {
             d={{ base: "block", lg: "none" }}
           >
             <Link
-              as={ReachLink}
               _hover={{
                 transition: "0.5s ease",
                 color: "#CD916D",
                 borderBottom: "1px solid #CD916D",
-              }}
-              style={({ isActive }) => {
-                return {
-                  color: isActive ? "#CD916D" : "",
-                  borderBottom: isActive ? "1px solid #CD916D" : "",
-                };
               }}
               textDecor="none"
               to="/reservation"

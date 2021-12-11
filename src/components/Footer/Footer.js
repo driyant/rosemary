@@ -157,7 +157,6 @@ const Footer = () => {
               />
               {progessIsShow && <Spinner color="white.500" />}
               <Box
-                as="button"
                 backgroundColor="#F2F2F2"
                 h="50px"
                 p="5px"
