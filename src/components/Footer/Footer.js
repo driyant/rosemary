@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Heading,
@@ -13,18 +13,100 @@ import { BsArrowRight } from "react-icons/bs";
 import { CgFacebook } from "react-icons/cg";
 import { IoLogoInstagram } from "react-icons/io";
 import { SiTwitter } from "react-icons/si";
+import styles from "./Footer.module.css";
+import { useToast, Spinner } from "@chakra-ui/react";
 
 const Footer = () => {
+  const [newsletterInput, setNewsletterInput] = useState("");
+  const [progessIsShow, setProgressIsShow] = useState(false);
+  const toast = useToast();
+  const newsletterInputIsValid =
+    newsletterInput.trim() !== "" && newsletterInput.includes("@");
+
+  const newsletterSubmitHandler = () => {
+    setProgressIsShow(true);
+    if (!newsletterInputIsValid) {
+      toast({
+        title: "Bad Request",
+        description: "Sorry cannot process, form is invalid.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      setProgressIsShow(false);
+      return;
+    }
+    const newslettersData = {
+      email: newsletterInput,
+    };
+    fetch(`${process.env.REACT_APP_NEWSLETTER}`, {
+      method: "POST",
+      body: JSON.stringify(newslettersData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 409) {
+          setProgressIsShow(false);
+          toast({
+            title: "Error",
+            description: "That email is already exist! 🙁",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          setNewsletterInput("");
+          return;
+        } else if (res.ok) {
+          setProgressIsShow(false);
+          toast({
+            title: "Success",
+            description: "Thank you, enjoy 20% discount 😀.",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          setNewsletterInput("");
+          return;
+        }
+      })
+      .catch((err) => {
+        setProgressIsShow(false);
+        toast({
+          title: "Error",
+          description: `Something went wrong 🙁!, ${err}`,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        setNewsletterInput("");
+      });
+  };
+
   return (
     <>
-      <Box as="footer" bgColor="#222222" d="flex" justifyContent="center" alignItems="center">
-        <Container color="#FFFFFF" maxWidth={{ lg: "90%" }}>
+      <Box
+        as="footer"
+        bgColor="#222222"
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Container color="#FFFFFF" maxWidth={{ md: "88%" , lg: "90%" }}>
           <Box
             d="flex"
             flexFlow={{ base: "column", lg: "row" }}
             borderBottom="1.5px solid #333333"
+            py={{ lg: "2rem" }}
+            mt={{ md: "1.5rem" }}
           >
-            <Box w={{ base: "100%", lg: "49%" }} marginTop="2.5rem">
+            <Box
+              w={{ base: "100%", lg: "49%" }}
+              marginTop= "2.5rem"
+              py={{ lg: "1rem" }}
+              px={{ lg: "0.5rem" }}
+            >
               <Text
                 letterSpacing="2px"
                 textTransform="uppercase"
@@ -39,6 +121,7 @@ const Footer = () => {
                 as="h3"
                 fontFamily="var(--Libre-Baskerville)"
                 fontWeight="500"
+                fontSize={{ base: "1.5rem", md: "1.7rem" }}
               >
                 Our Weekly Newsletter
               </Heading>
@@ -50,11 +133,14 @@ const Footer = () => {
               justifyContent="space-between"
               mb="4rem"
               w={{ lg: "50%" }}
+              pt={{ md: "1rem" }}
             >
               <Input
+                className={styles.newsletter}
                 w="70%"
                 borderRadius="0px"
                 h="50px"
+                type="email"
                 placeholder="TYPE YOUR EMAIL"
                 textTransform="uppercase"
                 borderTop="none"
@@ -64,16 +150,22 @@ const Footer = () => {
                 fontFamily="var(--Bebas-Neue)"
                 letterSpacing="2px"
                 variant="flushed"
+                color="#FFFFFF"
+                isRequired={true}
+                onChange={(e) => setNewsletterInput(e.target.value)}
+                value={newsletterInput}
               />
+              {progessIsShow && <Spinner color="white.500" />}
               <Box
                 as="button"
                 backgroundColor="#F2F2F2"
                 h="50px"
                 p="5px"
                 textTransform="uppercase"
-                w="20%"
+                w={{md : "20%", lg: "10%" }}
               >
                 <Button
+                  onClick={newsletterSubmitHandler}
                   borderRadius="0"
                   style={{
                     border: "2px solid #D3D0CE",
@@ -153,7 +245,7 @@ const Footer = () => {
                 fontFamily="var(--Libre-Baskerville)"
               >
                 <ListItem my="1rem">2021 &copy; Rosemary</ListItem>
-                <ListItem my="1rem">Design by Sicily</ListItem>
+                <ListItem my="1rem">Design Inspired by Sicily</ListItem>
                 <UnorderedList
                   my="1rem"
                   d="inline-flex"
@@ -204,10 +296,17 @@ const Footer = () => {
               </UnorderedList>
             </Box>
           </Box>
-          <Box d="flex" justifyContent="center" alignItems="center" w="100%" mt="1rem">
-            <Text 
+          <Box
+            d="flex"
+            justifyContent="center"
+            alignItems="center"
+            w="100%"
+            mt="1rem"
+          >
+            <Text
               fontFamily="var(--Libre-Baskerville)"
               fontSize="2rem"
+              mb="1.5rem"
             >
               Rosemary
             </Text>

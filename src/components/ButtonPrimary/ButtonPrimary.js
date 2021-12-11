@@ -16,7 +16,7 @@ const ButtonPrimary = (props) => {
         bgGradient="linear(to-r, #A46E50, #C19372)"
       >
         <Link
-          to="/menu"
+          to="/reservation"
           style={{
             border: "2px solid rgba(241, 241, 241, 0.8)",
             width: "100%",

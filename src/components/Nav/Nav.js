@@ -9,7 +9,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useBoolean } from "@chakra-ui/hooks";
-import { Link as ReachLink } from "react-router-dom";
+import { NavLink as ReachLink } from "react-router-dom";
 import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import rosemary from "../../images/rosemary.png";
 
@@ -33,12 +33,7 @@ const Nav = () => {
         bgColor="#FFFFFF"
       >
         {/*  Logo wrapper */}
-        <Box 
-          d="flex" 
-          flexDir="row" 
-          justifyContent="center" 
-          alignItems="center"
-        >
+        <Box d="flex" flexDir="row" justifyContent="center" alignItems="center">
           <Link
             as={ReachLink}
             to="/"
@@ -49,11 +44,15 @@ const Nav = () => {
               alignItems: "center",
             }}
             _hover={{
-              textDecor: "none"
+              textDecor: "none",
             }}
           >
             <Image src={rosemary} alt="Rosemary" h="64px" w="64px" />
-            <Heading fontWeight="600" color="#00000" fontFamily="var(--Libre-Baskerville)">
+            <Heading
+              fontWeight="600"
+              color="#00000"
+              fontFamily="var(--Libre-Baskerville)"
+            >
               Rosemary
             </Heading>
           </Link>
@@ -101,6 +100,12 @@ const Nav = () => {
                 color: "#CD916D",
                 transition: "0.5s ease",
               }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
+              }}
             >
               discover
             </Link>
@@ -123,6 +128,12 @@ const Nav = () => {
               _hover={{
                 transition: "0.5s ease",
                 color: "#CD916D",
+              }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
               }}
             >
               our menu
@@ -148,6 +159,12 @@ const Nav = () => {
                 transition: "0.5s ease",
                 color: "#CD916D",
               }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
+              }}
             >
               contact
             </Link>
@@ -168,7 +185,13 @@ const Nav = () => {
               _hover={{
                 transition: "0.5s ease",
                 color: "#CD916D",
-                borderBottom:"1px solid #CD916D"
+                borderBottom: "1px solid #CD916D",
+              }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
               }}
               textDecor="none"
               to="/reservation"
@@ -190,7 +213,7 @@ const Nav = () => {
         >
           <Text
             textTransform="uppercase"
-            color={isOpen ?  '#FFFFFF' : '#000000'}
+            color={isOpen ? "#FFFFFF" : "#000000"}
             marginRight="0.2rem"
             fontSize="1.3rem"
             letterSpacing="2px"
@@ -212,18 +235,18 @@ const Nav = () => {
             onClick={setIsOpen.toggle}
           >
             <Box
-              backgroundColor={isOpen ?  '#FFFFFF' : '#000000'}
+              backgroundColor={isOpen ? "#FFFFFF" : "#000000"}
               h="1px"
-              border={isOpen ?  '1px solid #FFFFFF' : '1px solid #000000'}
+              border={isOpen ? "1px solid #FFFFFF" : "1px solid #000000"}
               w="60%"
               borderRadius="12px"
               transform={isOpen ? "rotate(45deg) translate(7px, 6px)" : ""}
               transition="all 0.5s ease-in-out"
             ></Box>
             <Box
-              backgroundColor={isOpen ?  '#FFFFFF' : '#000000'}
+              backgroundColor={isOpen ? "#FFFFFF" : "#000000"}
               h="1px"
-              border={isOpen ?  '1px solid #FFFFFF' : '1px solid #000000'}
+              border={isOpen ? "1px solid #FFFFFF" : "1px solid #000000"}
               w="60%"
               borderRadius="12px"
               transform={isOpen ? "rotate(-45deg) translate(6px, -6px)" : ""}

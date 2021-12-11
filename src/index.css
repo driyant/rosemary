@@ -24,6 +24,16 @@ code {
     monospace;
 }
 
+input::placeholder {
+  color: #000000;
+  font-family: var(--Bebas-Neue);
+}
+
+textarea::placeholder {
+  color: #000000;
+  font-family: var(--Bebas-Neue);
+}
+
 #root {
   overflow-x: hidden;
   position: relative;

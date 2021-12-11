@@ -27,7 +27,7 @@ const SectionService = () => {
           h={{lg: "350px"}}
         >
           <HiOutlineBadgeCheck color="#CD916D" size={48}/>
-          <Heading as="h6" fontSize="1rem" my="1rem">High Quality</Heading>
+          <Heading as="h6" fontSize={{ base: "1rem", md: "1.5rem" }} my="1rem">High Quality</Heading>
           <Text textAlign="center" fontSize="0.875rem" w={{ lg: "70%"}}>We put only the best quality ingriedients in every dish and plate we serve.</Text>
         </Box>
         <Box
@@ -42,7 +42,7 @@ const SectionService = () => {
           h={{lg: "350px"}}
         >
           <TiLeaf color="#CD916D" size={48}/>
-          <Heading as="h6" fontSize="1rem" my="1rem">Royal Taste</Heading>
+          <Heading as="h6" fontSize={{ base: "1rem", md: "1.5rem" }} my="1rem">Royal Taste</Heading>
           <Text textAlign="center" fontSize="0.875rem" w={{ lg: "70%"}}>We are dedicated to serve only the finest and tastiest food to our customers.</Text>
         </Box>
         <Box
@@ -56,7 +56,7 @@ const SectionService = () => {
           h={{lg: "350px"}}
         >
           <GiAlarmClock color="#CD916D" size={48}/>
-          <Heading as="h6" fontSize="1rem"  my="1rem">Quick Service</Heading>
+          <Heading as="h6" fontSize={{ base: "1rem", md: "1.5rem" }}  my="1rem">Quick Service</Heading>
           <Text textAlign="center" fontSize="0.875rem" w={{ lg: "70%"}}>Worry not about waiting too long for your dish, We got that covered for you!</Text>
         </Box>
       </Box>

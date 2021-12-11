@@ -4,6 +4,7 @@ import Homepage from "../src/pages/Homepage/Homepage";
 import Discover from "../src/pages/Discover/Discover";
 import OurMenu from "../src/pages/OurMenu/OurMenu";
 import Contact from "../src/pages/Contact/Contact";
+import Reservation from "../src/pages/Reservation/Reservation";
 import Page404 from "../src/pages/Page404/Page404";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/discover" element={ <Discover /> } />
         <Route path="/menu" element={ <OurMenu /> } />
         <Route path="/contact" element={ <Contact /> } />
+        <Route path="/reservation" element={ <Reservation /> } />
         <Route path="/*" element={ <Page404 /> } />
       </Routes>
     </>
