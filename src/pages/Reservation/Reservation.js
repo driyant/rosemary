@@ -44,7 +44,7 @@ const Reservation = () => {
   const [lastnameIsInvalid, setLastnameIsInvalid] = useState(false);
   const [email, setEmail] = useState("");
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
-  const [person,setPerson] = useState(0);
+  const [person,setPerson] = useState(1);
   const [personIsInvalid, setPersonIsInvalid] = useState(false);
   const [date,setDate] = useState("");
   const [dateIsInvalid, setDateIsInvalid] = useState(false);
@@ -104,7 +104,7 @@ const Reservation = () => {
     } else if (email === "") {
       setEmailIsInvalid(true);
       return;
-    } else if (Number(person)  <= 0 || Number(person) >= 11) {
+    } else if (Number(person)  <= 0 || Number(person) > 11) {
       setPersonIsInvalid(true);
       return;
     } else if (date < todayNow || date === "") {
@@ -140,7 +140,7 @@ const Reservation = () => {
         });
         setFirstname("");
         setLastname("");
-        setPerson("");
+        setPerson(1);
         setEmail("");
         setLoadingIsShow(false);
         e.target.reset();
@@ -310,7 +310,7 @@ const Reservation = () => {
               />
               { emailIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid email ☝️</Text>}
               <NumberInput
-                min={0}
+                min={1}
                 bgColor="#E2E8F0"
                 fontFamily="var(--Bebas-Neue)"
                 color="#494949"
