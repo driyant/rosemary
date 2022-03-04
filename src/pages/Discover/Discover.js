@@ -1,17 +1,11 @@
-import React from 'react';
+import React from "react";
 import Nav from "../../components/Nav/Nav";
-import {
-  Box, 
-  Heading,
-  Text,
-  Image
-} from "@chakra-ui/react";
-import ButtonSecondary from "../../components/ButtonSecondary/ButtonSecondary";
-import SectionQuote from '../../components/SectionQuote/SectionQuote';
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import SectionQuote from "../../components/SectionQuote/SectionQuote";
 import steak from "../../images/steak.jpg";
 import restaurantChef from "../../images/restaurant_chef.jpg";
-import SectionTodayMenu from '../../components/SectionTodayMenu/SectionTodayMenu';
-import SectionService from '../../components/SectionService/SectionService';
+import SectionTodayMenu from "../../components/SectionTodayMenu/SectionTodayMenu";
+import SectionService from "../../components/SectionService/SectionService";
 import Maps from "../../components/Maps/Maps";
 import Footer from "../../components/Footer/Footer";
 
@@ -19,31 +13,34 @@ const Discover = () => {
   return (
     <>
       <Nav />
-      <Box 
+      <Box
         as="header"
-        d={{ 
-          base: "flex"
-         }}
+        d={{
+          base: "flex",
+        }}
         flexFlow={{
           base: "column nowrap",
-          lg: "row-reverse nowrap"
+          lg: "row-reverse nowrap",
         }}
         justifyContent="center"
         alignItems="center"
         mt="150px"
       >
         {/* Box Right Imagery */}
-        <Box
-          w={{base : "100%", lg : "49%"}}
-        >
-          <Box>
-            <Image 
-              src={restaurantChef} 
+        <Box w={{ base: "100%", lg: "49%" }}>
+          <Box
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Image
+              src={restaurantChef}
               alt="Restaurant Chef"
               objectFit="center"
               objectPosition="cover"
               ml="5rem"
-              mt="1rem"
+              mt="2rem"
+              maxWidth="80%"
             />
           </Box>
           <Box
@@ -52,14 +49,17 @@ const Discover = () => {
             bottom={{ base: "50px", md: "130px", lg: "150px" }}
             border="6px solid #FFFFFF"
             w={{ base: "240px", md: "350px", lg: "400px" }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1 }}
           >
-            <Image 
-              src={steak} 
+            <Image
+              src={steak}
               alt="Steak Rosemary"
               objectFit="center"
               objectPosition="cover"
               w="100%"
-              h={{ base: "173px", md: "250px", lg : "250px" }}
+              h={{ base: "173px", md: "250px", lg: "250px" }}
             />
           </Box>
         </Box>
@@ -67,7 +67,7 @@ const Discover = () => {
         <Box
           d="flex"
           flexFlow="column"
-          width={{base : "100%", lg : "49%"}}
+          width={{ base: "100%", lg: "49%" }}
           px="1rem"
         >
           <Heading
@@ -75,6 +75,7 @@ const Discover = () => {
             fontFamily="var(--Bebas-Neue)"
             letterSpacing="1.5px"
             fontWeight="500"
+            textTransform="uppercase"
           >
             rosemary restaurant
           </Heading>
@@ -89,7 +90,6 @@ const Discover = () => {
           </Text>
           <Text
             fontFamily="var(--Libre-Baskerville)"
-            fontSize="1rem"
             mb="1rem"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -97,9 +97,6 @@ const Discover = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </Text>
-          <ButtonSecondary marginBottom="2rem">
-            check the menu
-          </ButtonSecondary>
         </Box>
       </Box>
       <SectionQuote />
@@ -109,6 +106,6 @@ const Discover = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default Discover;

@@ -277,7 +277,7 @@ const Contact = () => {
                       color: "#FFFFFF",
                     }}
                   >
-                    Submit
+                    {loadingIsShow ? "Processing..." : "Submit"}
                     {loadingIsShow && <Spinner ml="-30px" color='white.500' />}
                   </Box>
                 </Box>

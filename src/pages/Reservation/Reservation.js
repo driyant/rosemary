@@ -160,7 +160,7 @@ const Reservation = () => {
       else if (res.status === 429) {
         showToast(
           'Error',
-          `Hi ${reservationData.firstname}, can not process your reservation. There was so many requests! 😤`,
+          `Hi ${reservationData.firstname}, cannot process your reservation. There was so many requests, try again later! 😤`,
           'error'
         )
         setLoadingIsShow(false);
@@ -261,7 +261,7 @@ const Reservation = () => {
               fontSize="1.2rem"
               textDecor="underline"
             >
-              Number of person only maximum 11 persons.
+              Number of person maximum 11 persons.
             </Text>
             <Text
               fontFamily="var(--Libre-Baskerville)"
@@ -321,6 +321,7 @@ const Reservation = () => {
               { emailIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid email ☝️</Text>}
               <NumberInput
                 min={1}
+                max={11}
                 bgColor="#E2E8F0"
                 fontFamily="var(--Bebas-Neue)"
                 color="#494949"
@@ -382,7 +383,7 @@ const Reservation = () => {
                   <Box
                     as="button"
                     type="submit"
-                    isDisabled={loadingIsShow ? true : false}
+                    disabled={loadingIsShow ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
@@ -398,7 +399,7 @@ const Reservation = () => {
                     }}
                   >
                    
-                    Submit
+                   {loadingIsShow ? "Processing..." : "Submit"}
                    {loadingIsShow && <Spinner ml="-30px" color='white.500' />}
                   </Box>
                 </Box>

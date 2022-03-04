@@ -29,6 +29,7 @@ const SectionTodayMenu = () => {
               objectPosition="cover"
               ml="5rem"
               mt="3rem"
+              maxWidth="80%"
             />
           </Box>
           <Box
