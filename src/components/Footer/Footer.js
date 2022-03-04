@@ -47,29 +47,39 @@ const Footer = () => {
       },
     })
       .then((res) => {
-        if (res.status === 409) {
-          setProgressIsShow(false);
-          toast({
-            title: "Error",
-            description: "That email is already exist! 🙁",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
-          setNewsletterInput("");
-          return;
-        } else if (res.ok) {
-          setProgressIsShow(false);
-          toast({
-            title: "Success",
-            description: "Thank you, enjoy 20% discount 😀.",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          });
-          setNewsletterInput("");
-          return;
-        }
+        console.log(res.status);
+        // if (res.status === 409) {
+        //   setProgressIsShow(false);
+        //   toast({
+        //     title: "Error",
+        //     description: "That email is already exist! 🙁",
+        //     status: "error",
+        //     duration: 9000,
+        //     isClosable: true,
+        //   });
+        //   setNewsletterInput("");
+        // } else if (res.status === 429) {
+        //   setProgressIsShow(false);
+        //   toast({
+        //     title: "Error",
+        //     description: "Sorry too many requests! 🙁",
+        //     status: "error",
+        //     duration: 9000,
+        //     isClosable: true,
+        //   });
+        //   setNewsletterInput("");
+        // } 
+        // else if (res.ok) {
+        //   setProgressIsShow(false);
+        //   toast({
+        //     title: "Success",
+        //     description: "Thank you, enjoy 20% discount 😀.",
+        //     status: "success",
+        //     duration: 9000,
+        //     isClosable: true,
+        //   });
+        //   setNewsletterInput("");
+        // }
       })
       .catch((err) => {
         setProgressIsShow(false);
@@ -137,7 +147,7 @@ const Footer = () => {
             >
               <Input
                 className={styles.newsletter}
-                w="70%"
+                w={{ base: "70%", md: "75%", lg: "80%" }}
                 borderRadius="0px"
                 h="50px"
                 type="email"
@@ -155,15 +165,15 @@ const Footer = () => {
                 onChange={(e) => setNewsletterInput(e.target.value)}
                 value={newsletterInput}
               />
-              {progessIsShow && <Spinner color="white.500" />}
               <Box
                 backgroundColor="#F2F2F2"
                 h="50px"
                 p="5px"
                 textTransform="uppercase"
-                w={{md : "20%", lg: "10%" }}
+                w={{md : "15%", lg: "10%" }}
               >
                 <Button
+                  // isDisabled={progessIsShow ? true : false}
                   onClick={newsletterSubmitHandler}
                   borderRadius="0"
                   style={{
@@ -179,7 +189,7 @@ const Footer = () => {
                     fontWeight: "500",
                   }}
                 >
-                  <BsArrowRight size={22} color="black" />
+                  { progessIsShow ? <Spinner color="black" /> : <BsArrowRight size={22} color="black" />}
                 </Button>
               </Box>
             </Box>

@@ -88,7 +88,7 @@ const Contact = () => {
       else if (res.status === 429) {
         showToast(
           "Error",
-          `Hi ${contactData.name}, can not send your email there was so many requests! 😤`,
+          `Hi ${contactData.name}, cannot process. There was so many requests, try again later! 😤`,
           "error"
         )
         setLoadingIsShow(false);
@@ -120,7 +120,6 @@ const Contact = () => {
 
   const enteredEmail = (e) => {
     setEmailInput(e.target.value);
-    console.log(emailInput);
   };
 
   const enteredSubject = (e) => {
@@ -263,7 +262,7 @@ const Contact = () => {
                     onClick={formSubmitHandler}
                     as="button"
                     type="submit"
-                    isDisabled={loadingIsShow ? true : false}
+                    disabled={loadingIsShow ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
