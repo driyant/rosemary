@@ -15,6 +15,7 @@ const OurMenu = () => {
   const [categoriesIsLoading, setCategoriesIsLoading] = useState(false);
   const [filteredMenus, setFilteredMenu] = useState([]);
   const [activeLink, setActiveLink] = useState("");
+  const [isMenuData, setIsMenuData] = useState(false);
 
   const fetchMenus = async () => {
     setMenusIsLoading(true);
@@ -38,6 +39,9 @@ const OurMenu = () => {
     setCategories(newCategories);
     setCategoriesIsLoading(false);
     setActiveLink("all");
+    if (menus.length === 0) {
+      setIsMenuData(true);
+    }
   };
 
   useEffect(() => {
@@ -139,6 +143,16 @@ const OurMenu = () => {
                 Loading Menu.....
               </Text>
             </Box>
+          )}
+          {isMenuData && (
+            <Text
+              textAlign="center"
+              fontFamily="var(--Bebas-Neue)"
+              fontSize="1.2rem"
+              letterSpacing="2px"
+            >
+              No data menu available.
+            </Text>
           )}
           {!menusIsLoading && <Menu menus={filteredMenus} />}
         </Container>

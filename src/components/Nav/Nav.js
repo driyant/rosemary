@@ -181,6 +181,7 @@ const Nav = () => {
             d={{ base: "block", lg: "none" }}
           >
             <Link
+              as={ReachLink}
               _hover={{
                 transition: "0.5s ease",
                 color: "#CD916D",
