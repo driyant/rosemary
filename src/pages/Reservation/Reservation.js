@@ -37,6 +37,7 @@ const DUMMY_TIME_DATA = [
   { value: "21.00", label: "21:00" },
 ];
 
+
 const Reservation = () => {
   const [firstname,setFirstname] = useState("");
   const [firstnameIsInvalid, setFirstnameIsInvalid] = useState(false);
@@ -176,6 +177,14 @@ const Reservation = () => {
         setLoadingIsShow(false);
         resetInput();
         e.target.reset();
+      }
+      else if (res.status===400) {
+        showToast(
+          'Error',
+          "Bad request, please check your form input!",
+          'error'
+        )
+        setLoadingIsShow(false);
       }
     }).catch((err) => {
       showToast(
