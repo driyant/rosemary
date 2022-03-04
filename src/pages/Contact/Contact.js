@@ -13,10 +13,11 @@ import {
   Textarea,
   FormControl,
 } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
+import { useToast, Spinner } from "@chakra-ui/react";
 import nature from "../../images/nature.jpg";
 
 const Contact = () => {
+  const [loadingIsShow, setLoadingIsShow] = useState(false);
   const [fullnameInput, setFullnameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [subjectInput, setSubjectInput] = useState("");
@@ -35,17 +36,33 @@ const Contact = () => {
     subjectInputIsValid &&
     messageInputIsValid;
 
+  const resetInput = () => {
+    setFullnameInput("");
+    setEmailInput("");
+    setSubjectInput("");
+    setMessageInput("");
+  }
+
+  const showToast = (title, description, status) => {
+    toast({
+      title: `${title}`,
+      description: `${description}`,
+      status: `${status}`,
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
   const formSubmitHandler = () => {
     if (!formIsValid) {
-      toast({
-        title: "Bad Request",
-        description: "Sorry cannot process, form is invalid.",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
+      showToast(
+        "Bad Request",
+        "Sorry cannot process, form is invalid",
+        "error"
+      )
       return;
     }
+    setLoadingIsShow(true);
     const contactData = {
       name: fullnameInput,
       email: emailInput,
@@ -60,31 +77,40 @@ const Contact = () => {
       },
     }).then((res) => {
       if (res.ok) {
-        toast({
-          title: "Success ",
-          description: `Hi ${contactData.name} 😀, your message has been successfully!.`,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        });
+        showToast(
+          "Success",
+          `Hi ${contactData.name} 😀, your message has been successfully!.`,
+          "error"
+        )
+        setLoadingIsShow(false);
+        resetInput();
+      }
+      else if (res.status === 429) {
+        showToast(
+          "Error",
+          `Hi ${contactData.name}, can not send your email there was so many requests! 😤`,
+          "error"
+        )
+        setLoadingIsShow(false);
+        resetInput();
       }
       else {
-        toast({
-          title: "Error ",
-          description: `There was an issue, you can reach us by sending email manually!`,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        });
+        showToast(
+          "Error",
+          `There was an issue, you can reach us by sending email manually!`,
+          "error"
+        )
+        setLoadingIsShow(false);
+        resetInput();
       }
     }).catch((err) => {
-      toast({
-        title: "Something went wrong!",
-        description: `${err}`,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
+      showToast(
+        "Error",
+        `Something went wrong! ${err}`,
+        "error"
+      )
+      setLoadingIsShow(false);
+      resetInput();
     });
   };
 
@@ -237,6 +263,7 @@ const Contact = () => {
                     onClick={formSubmitHandler}
                     as="button"
                     type="submit"
+                    isDisabled={loadingIsShow ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
@@ -252,6 +279,7 @@ const Contact = () => {
                     }}
                   >
                     Submit
+                    {loadingIsShow && <Spinner ml="-30px" color='white.500' />}
                   </Box>
                 </Box>
               </Box>
