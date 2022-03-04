@@ -85,7 +85,7 @@ const Reservation = () => {
     if (date  !== "" && date > todayNow) {
       setDateIsInvalid(false);
     }
-  }, [date]);
+  }, [date, todayNow]);
 
   useEffect(() => {
     if (time !== "") {
