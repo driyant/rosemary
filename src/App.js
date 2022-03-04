@@ -15,6 +15,7 @@ function App() {
     <>
       <Suspense fallback={ <Lazy /> }>
         <Routes>
+          {/* <Route path="/" element={ <Lazy /> } /> */}
           <Route path="/" element={  <Homepage /> } />
           <Route path="/discover" element={ <Discover /> } />
           <Route path="/menu" element={ <OurMenu /> } />

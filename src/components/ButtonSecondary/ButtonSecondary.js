@@ -2,11 +2,14 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import { motion } from "framer-motion";
+const MotionButtonSecondary = motion(Box);
+
 
 const ButtonSecondary = (props) => {
   return (
     <>
-      <Box
+      <MotionButtonSecondary
         as="button"
         backgroundColor="rgba(233, 233, 233, 0.8)"
         h="60px"
@@ -15,6 +18,9 @@ const ButtonSecondary = (props) => {
         w="200px"
         marginBottom={props.marginBottom}
         marginTop={props.marginTop}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
       >
         <Link
           to="/menu"
@@ -34,7 +40,7 @@ const ButtonSecondary = (props) => {
           {props.children}
           <BsArrowRight size={22} />
         </Link>
-      </Box>
+      </MotionButtonSecondary>
     </>
   );
 };

@@ -13,6 +13,11 @@ import ButtonPrimary from "../../components/ButtonPrimary/ButtonPrimary";
 import { useBoolean } from "@chakra-ui/hooks";
 import bgImage from "../../images/resort.jpg";
 import rosemaryWhite from "../../images/rosemary-white.png";
+import { motion } from "framer-motion";
+
+const MotionText = motion(Text);
+const MotionButtonSecondary = motion(ButtonSecondary);
+const MotionHeading = motion(Heading);
 
 const Homepage = () => {
   const [isOpen, setIsOpen] = useBoolean();
@@ -59,7 +64,11 @@ const Homepage = () => {
               }}
             >
               <Image src={rosemaryWhite} alt="Rosemary" />
-              <Heading fontWeight="600" color="#ffffff" fontFamily="var(--Libre-Baskerville)">
+              <Heading
+                fontWeight="600"
+                color="#ffffff"
+                fontFamily="var(--Libre-Baskerville)"
+              >
                 Rosemary
               </Heading>
             </Link>
@@ -218,30 +227,43 @@ const Homepage = () => {
         {/* End Navbar */}
         <Box
           maxWidth="80%"
-          marginTop={{ base: "10rem", md: "20rem", lg: "13rem" }}
+          marginTop={{  
+            base: "7rem", 
+            md: "20rem", 
+            lg: "13rem" 
+          }}
           marginLeft={{ base: "1.4rem", lg: "4.5rem" }}
           d={isOpen ? "none" : "block"}
           transition="all 1s ease-in-out"
         >
-          <Heading
+          <MotionHeading
             color="#CD916D"
             fontFamily="var(--Bebas-Neue)"
             letterSpacing="1.5px"
             fontWeight="500"
             textTransform="uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
           >
             rosemary restaurant
-          </Heading>
-          <Text
+          </MotionHeading>
+          <MotionText
             color="white"
             fontFamily="var(--Libre-Baskerville)"
             fontSize="28px"
             my="1rem"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
           >
             "A good restaurant is like a vacation; it transports you, and it
             becomes a lot more than just about the food"
-          </Text>
-          <ButtonSecondary>check the menu</ButtonSecondary>
+          </MotionText>
+          <MotionButtonSecondary
+          >
+            check the menu
+          </MotionButtonSecondary>
         </Box>
       </Box>
     </>
