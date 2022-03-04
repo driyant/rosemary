@@ -182,13 +182,13 @@ const Nav = () => {
           >
             <Link
               as={ReachLink}
+              to="/reservation"
               _hover={{
                 transition: "0.5s ease",
                 color: "#CD916D",
                 borderBottom: "1px solid #CD916D",
               }}
               textDecor="none"
-              to="/reservation"
             >
               book reservation
             </Link>
