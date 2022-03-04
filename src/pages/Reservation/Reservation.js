@@ -93,6 +93,23 @@ const Reservation = () => {
     }
   }, [time]);
 
+  const showToast = (title, description, status) => {
+    toast({
+      title: `${title}`,
+      description: `${description}`,
+      status: `${status}`,
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  const resetInput = () => {
+    setFirstname("");
+    setLastname("");
+    setPerson(1);
+    setEmail("");
+  }
+
   const reservationSubmitHandler = (e) => {
     e.preventDefault();
     if (firstname === "") {
@@ -131,52 +148,45 @@ const Reservation = () => {
       }
     }).then((res) => {
       if (res.ok) {
-        toast({
-          title: 'Thank you 😀',
-          description: `Hi ${reservationData.firstname}, your booking reservation has been sent successfully! Please kindly check your email in inbox/spam if it gets accepted!`,
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        });
-        setFirstname("");
-        setLastname("");
-        setPerson(1);
-        setEmail("");
+        showToast(
+          'Thank you 😀',
+          `Hi ${reservationData.firstname}, your booking reservation has been sent successfully! Please kindly check your email in inbox/spam if it gets accepted!`,
+          'success'
+        )
         setLoadingIsShow(false);
+        resetInput();
         e.target.reset();
-        return;
       }
-      if (res.status===409) {
-        toast({
-          title: 'Sorry 🙁',
-          description: "Booking date or time already exist! Please change the date or time ",
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        });
+      else if (res.status === 429) {
+        showToast(
+          'Error',
+          `Hi ${reservationData.firstname}, can not process your reservation. There was so many requests! 😤`,
+          'error'
+        )
         setLoadingIsShow(false);
-        return;
+        resetInput();
+        e.target.reset();
       }
-      if (!res.ok) {
-        toast({
-          title: 'Sorry 🙁, there is an issue, ',
-          description: `If this problem still persists you can contact us for your reservation.`,
-          status: 'error',
-          duration: 9000,
-          isClosable: true
-        });
+      else if (res.status===409) {
+        showToast(
+          'Error',
+          "Booking date or time already exist! Please change the date or time ",
+          'error'
+        )
         setLoadingIsShow(false);
+        resetInput();
+        e.target.reset();
       }
     }).catch((err) => {
-      toast({
-        title: 'Sorry 🙁, there is an issue, ',
-        description: `If this problem still persists you can contact us for your reservation. ${err}`,
-        status: 'error',
-        duration: 9000,
-        isClosable: true
-      });
+      showToast(
+        'Sorry 🙁, there is an issue',
+        `If this problem still persists you can contact us for your reservation. ${err}`,
+        'error'
+      )
       setLoadingIsShow(false);
-    })
+      resetInput();
+      e.target.reset();
+    });
   }
   return (
     <>
@@ -372,6 +382,7 @@ const Reservation = () => {
                   <Box
                     as="button"
                     type="submit"
+                    isDisabled={loadingIsShow ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
