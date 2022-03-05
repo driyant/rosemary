@@ -48,41 +48,43 @@ const Footer = () => {
     })
       .then((res) => {
         console.log(res.status);
-        // if (res.status === 409) {
-        //   setProgressIsShow(false);
-        //   toast({
-        //     title: "Error",
-        //     description: "That email is already exist! 🙁",
-        //     status: "error",
-        //     duration: 9000,
-        //     isClosable: true,
-        //   });
-        //   setNewsletterInput("");
-        // } else if (res.status === 429) {
-        //   setProgressIsShow(false);
-        //   toast({
-        //     title: "Error",
-        //     description: "Sorry too many requests! 🙁",
-        //     status: "error",
-        //     duration: 9000,
-        //     isClosable: true,
-        //   });
-        //   setNewsletterInput("");
-        // } 
-        // else if (res.ok) {
-        //   setProgressIsShow(false);
-        //   toast({
-        //     title: "Success",
-        //     description: "Thank you, enjoy 20% discount 😀.",
-        //     status: "success",
-        //     duration: 9000,
-        //     isClosable: true,
-        //   });
-        //   setNewsletterInput("");
-        // }
+        if (res.status === 409) {
+          setProgressIsShow(false);
+          toast({
+            title: "Error",
+            description: "That email is already exist! 🙁",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          setNewsletterInput("");
+          setProgressIsShow(false);
+        } else if (res.status === 429) {
+          setProgressIsShow(false);
+          toast({
+            title: "Error",
+            description: "Sorry too many requests! 🙁",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          setNewsletterInput("");
+          setProgressIsShow(false);
+        } 
+        else if (res.ok) {
+          setProgressIsShow(false);
+          toast({
+            title: "Success",
+            description: "Thank you, enjoy 20% discount 😀.",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          setNewsletterInput("");
+          setProgressIsShow(false);
+        }
       })
       .catch((err) => {
-        setProgressIsShow(false);
         toast({
           title: "Error",
           description: `Something went wrong 🙁!, ${err}`,
@@ -91,6 +93,7 @@ const Footer = () => {
           isClosable: true,
         });
         setNewsletterInput("");
+        setProgressIsShow(false);
       });
   };
 

@@ -80,7 +80,7 @@ const Contact = () => {
         showToast(
           "Success",
           `Hi ${contactData.name} 😀, your message has been successfully!.`,
-          "error"
+          "success"
         )
         setLoadingIsShow(false);
         resetInput();
