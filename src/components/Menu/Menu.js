@@ -11,7 +11,7 @@ const Menu = ({ menus, isLoading }) => {
         px="1rem"
         mt="4rem"
       >
-        {menus.length === 0 ? (
+        {!isLoading && menus.length === 0 ? (
           <Text
             textAlign="center"
             fontFamily="var(--Bebas-Neue)"
