@@ -54,7 +54,7 @@ const Footer = () => {
           return;
         }
         if (resp.ok) {
-          showToast("Success!", "Thank you, enjoy 20% discount 😀.", "success");
+          showToast("Success!", "Thank you, enjoy 20% discount 😀", "success");
           setNewsletterInput("");
           return;
         }
