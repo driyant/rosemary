@@ -7,16 +7,19 @@ import SectionService from "../../components/SectionService/SectionService";
 import Footer from "../../components/Footer/Footer";
 import { Box, Heading, Text, Container, Spinner } from "@chakra-ui/react";
 import restaurantImage from "../../images/restaurant-1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../store/action";
 
 const OurMenu = () => {
+  const dispatch = useDispatch();
+  const { categories, isLoading } = useSelector(state => state);
   const [menus, setMenus] = useState([]);
   const [menusIsLoading, setMenusIsLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
   const [categoriesIsLoading, setCategoriesIsLoading] = useState(false);
   const [filteredMenus, setFilteredMenu] = useState([]);
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState("all");
   const [isMenuData, setIsMenuData] = useState(false);
-
+  
   const fetchMenus = async () => {
     setMenusIsLoading(true);
     const sendingRequestMenus = await fetch(
@@ -28,25 +31,9 @@ const OurMenu = () => {
     setMenusIsLoading(false);
   };
 
-  const fetchCategories = async () => {
-    setCategoriesIsLoading(true);
-    const sendingRequestCategories = await fetch(
-      `${process.env.REACT_APP_API_CATEGORIES}`
-    );
-    const categoriesResponse = await sendingRequestCategories.json();
-    const getCategories = categoriesResponse.map((category) => category.name);
-    const newCategories = ["all", ...getCategories];
-    setCategories(newCategories);
-    setCategoriesIsLoading(false);
-    setActiveLink("all");
-    if (menus.length === 0) {
-      setIsMenuData(true);
-    }
-  };
-
   useEffect(() => {
-    fetchMenus();
-    fetchCategories();
+    // fetchMenus();
+    dispatch(fetchCategories())
   }, []);
 
   const filterCategories = (category) => {
@@ -144,7 +131,7 @@ const OurMenu = () => {
               </Text>
             </Box>
           )}
-          {isMenuData && (
+          {/* {isMenuData && (
             <Text
               textAlign="center"
               fontFamily="var(--Bebas-Neue)"
@@ -153,7 +140,7 @@ const OurMenu = () => {
             >
               No data menu available.
             </Text>
-          )}
+          )} */}
           {!menusIsLoading && <Menu menus={filteredMenus} />}
         </Container>
       </Box>

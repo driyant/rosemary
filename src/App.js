@@ -1,4 +1,6 @@
 import "./App.css";
+import { Provider } from "react-redux";
+import store from "./store";
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Lazy from "../src/components/Lazy/Lazy";
@@ -14,15 +16,16 @@ function App() {
   return (
     <>
       <Suspense fallback={ <Lazy /> }>
-        <Routes>
-          {/* <Route path="/" element={ <Lazy /> } /> */}
-          <Route path="/" element={  <Homepage /> } />
-          <Route path="/discover" element={ <Discover /> } />
-          <Route path="/menu" element={ <OurMenu /> } />
-          <Route path="/contact" element={ <Contact /> } />
-          <Route path="/reservation" element={ <Reservation /> } />
-          <Route path="/*" element={ <Page404 /> } />
-        </Routes>
+        <Provider store={store}>
+          <Routes>
+            <Route path="/" element={  <Homepage /> } />
+            <Route path="/discover" element={ <Discover /> } />
+            <Route path="/menu" element={ <OurMenu /> } />
+            <Route path="/contact" element={ <Contact /> } />
+            <Route path="/reservation" element={ <Reservation /> } />
+            <Route path="/*" element={ <Page404 /> } />
+          </Routes>
+        </Provider>
       </Suspense>
     </>
   );
