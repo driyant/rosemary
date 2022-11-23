@@ -116,17 +116,8 @@ const OurMenu = () => {
               </Text>
             </Box>
           )}
-          {/* {isMenuData && (
-            <Text
-              textAlign="center"
-              fontFamily="var(--Bebas-Neue)"
-              fontSize="1.2rem"
-              letterSpacing="2px"
-            >
-              No data menu available.
-            </Text>
-          )} */}
-          {!isLoading && <Menu menus={filteredMenu} />}
+          {/* {!isLoading && <Menu menus={filteredMenu} />} */}
+          <Menu menus={filteredMenu} isLoading={isLoading}/>
         </Container>
       </Box>
       <SectionService />
