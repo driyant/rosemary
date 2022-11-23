@@ -15,85 +15,53 @@ import { IoLogoInstagram } from "react-icons/io";
 import { SiTwitter } from "react-icons/si";
 import styles from "./Footer.module.css";
 import { useToast, Spinner } from "@chakra-ui/react";
+import { sendEmailSubscriber } from "../../store/action";
+import { useDispatch, useSelector } from "react-redux";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state);
   const [newsletterInput, setNewsletterInput] = useState("");
-  const [progessIsShow, setProgressIsShow] = useState(false);
   const toast = useToast();
+  const showToast = (title, description, status) => {
+    toast({
+      title: title,
+      description: description,
+      status: status,
+      duration: 9000,
+      isClosable: true,
+    });
+  };
   const newsletterInputIsValid =
     newsletterInput.trim() !== "" && newsletterInput.includes("@");
-
   const newsletterSubmitHandler = () => {
-    setProgressIsShow(true);
     if (!newsletterInputIsValid) {
-      toast({
-        title: "Bad Request",
-        description: "Sorry cannot process, form is invalid.",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-      setProgressIsShow(false);
+      showToast(
+        "BAD REQUEST!",
+        "Sorry cannot process, email should not be empty!",
+        "error"
+      );
       return;
     }
     const newslettersData = {
       email: newsletterInput,
     };
-    fetch(`${process.env.REACT_APP_NEWSLETTER}`, {
-      method: "POST",
-      body: JSON.stringify(newslettersData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res.status);
-        if (res.status === 409) {
-          setProgressIsShow(false);
-          toast({
-            title: "Error",
-            description: "That email is already exist! 🙁",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
+    dispatch(sendEmailSubscriber(newslettersData))
+      .then((resp) => {
+        if (!resp.ok) {
+          showToast("Error!", `${resp.statusText}`, `error`);
           setNewsletterInput("");
-          setProgressIsShow(false);
-        } else if (res.status === 429) {
-          setProgressIsShow(false);
-          toast({
-            title: "Error",
-            description: "Sorry too many requests! 🙁",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
+          return;
+        }
+        if (resp.ok) {
+          showToast("Success!", "Thank you, enjoy 20% discount 😀.", "success");
           setNewsletterInput("");
-          setProgressIsShow(false);
-        } 
-        else if (res.ok) {
-          setProgressIsShow(false);
-          toast({
-            title: "Success",
-            description: "Thank you, enjoy 20% discount 😀.",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          });
-          setNewsletterInput("");
-          setProgressIsShow(false);
+          return;
         }
       })
       .catch((err) => {
-        toast({
-          title: "Error",
-          description: `Something went wrong 🙁!, ${err}`,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        });
+        showToast("Error!", `Something went wrong! ${err}`, 'error');
         setNewsletterInput("");
-        setProgressIsShow(false);
       });
   };
 
@@ -106,7 +74,7 @@ const Footer = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Container color="#FFFFFF" maxWidth={{ md: "88%" , lg: "90%" }}>
+        <Container color="#FFFFFF" maxWidth={{ md: "88%", lg: "90%" }}>
           <Box
             d="flex"
             flexFlow={{ base: "column", lg: "row" }}
@@ -116,7 +84,7 @@ const Footer = () => {
           >
             <Box
               w={{ base: "100%", lg: "49%" }}
-              marginTop= "2.5rem"
+              marginTop="2.5rem"
               py={{ lg: "1rem" }}
               px={{ lg: "0.5rem" }}
             >
@@ -173,7 +141,7 @@ const Footer = () => {
                 h="50px"
                 p="5px"
                 textTransform="uppercase"
-                w={{md : "15%", lg: "10%" }}
+                w={{ md: "15%", lg: "10%" }}
               >
                 <Button
                   // isDisabled={progessIsShow ? true : false}
@@ -192,7 +160,11 @@ const Footer = () => {
                     fontWeight: "500",
                   }}
                 >
-                  { progessIsShow ? <Spinner color="black" /> : <BsArrowRight size={22} color="black" />}
+                  {isLoading ? (
+                    <Spinner color="black" />
+                  ) : (
+                    <BsArrowRight size={22} color="black" />
+                  )}
                 </Button>
               </Box>
             </Box>

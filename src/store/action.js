@@ -44,3 +44,24 @@ export const fetchMenu = () => {
     })
   }
 }
+
+export const sendEmailSubscriber = (data) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "setLoadingTrue"
+    })
+    return fetch(`${process.env.REACT_APP_NEWSLETTER}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(resp => resp)
+    .finally(() => {
+      dispatch({
+        type: "setLoadingFalse"
+      })
+    })
+  } 
+}
