@@ -23,3 +23,24 @@ export const fetchCategories = () => {
   }
 }
 
+export const fetchMenu = () => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'setLoadingTrue'
+    })
+    return fetch(`${process.env.REACT_APP_API_MENU}`)
+    .then(resp => resp.json())
+    .then(data => {
+      dispatch({
+        type: "FETCH_MENU",
+        payload: data
+      })
+      return data
+    })
+    .finally(() => {
+      dispatch({
+        type: 'setLoadingFalse'
+      })
+    })
+  }
+}

@@ -8,42 +8,27 @@ import Footer from "../../components/Footer/Footer";
 import { Box, Heading, Text, Container, Spinner } from "@chakra-ui/react";
 import restaurantImage from "../../images/restaurant-1.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../../store/action";
+import { fetchCategories, fetchMenu } from "../../store/action";
 
 const OurMenu = () => {
   const dispatch = useDispatch();
-  const { categories, isLoading } = useSelector(state => state);
-  const [menus, setMenus] = useState([]);
-  const [menusIsLoading, setMenusIsLoading] = useState(false);
-  const [categoriesIsLoading, setCategoriesIsLoading] = useState(false);
-  const [filteredMenus, setFilteredMenu] = useState([]);
+  const { categories, menu, isLoading } = useSelector(state => state);
+  const [filteredMenu, setFilteredMenu] = useState([]);
   const [activeLink, setActiveLink] = useState("all");
-  const [isMenuData, setIsMenuData] = useState(false);
-  
-  const fetchMenus = async () => {
-    setMenusIsLoading(true);
-    const sendingRequestMenus = await fetch(
-      `${process.env.REACT_APP_API_MENUS}`
-    );
-    const menusResponse = await sendingRequestMenus.json();
-    setMenus(menusResponse);
-    setFilteredMenu(menusResponse);
-    setMenusIsLoading(false);
-  };
 
   useEffect(() => {
-    // fetchMenus();
     dispatch(fetchCategories())
+    dispatch(fetchMenu()).then(data => setFilteredMenu(data))
   }, []);
 
   const filterCategories = (category) => {
     if (category === "all") {
-      setFilteredMenu(menus);
+      setFilteredMenu(menu);
       setActiveLink("all");
       return;
     }
-    const newMenus = menus.filter((menu) => menu.category.name === category);
-    setFilteredMenu(newMenus);
+    const newMenu = menu.filter((menu) => menu.category.name === category);
+    setFilteredMenu(newMenu);
     setActiveLink(category);
   };
 
@@ -83,7 +68,7 @@ const OurMenu = () => {
             alignItems="center"
             flexFlow="column nowrap"
           >
-            {categoriesIsLoading && (
+            {isLoading && (
               <Box
                 mx="auto"
                 d="flex"
@@ -104,7 +89,7 @@ const OurMenu = () => {
               </Box>
             )}
           </Box>
-          {!categoriesIsLoading && (
+          {!isLoading && (
             <Category
               categories={categories}
               filterCategories={filterCategories}
@@ -112,7 +97,7 @@ const OurMenu = () => {
             />
           )}
 
-          {menusIsLoading && (
+          {isLoading && (
             <Box
               mx="auto"
               d="flex"
@@ -141,7 +126,7 @@ const OurMenu = () => {
               No data menu available.
             </Text>
           )} */}
-          {!menusIsLoading && <Menu menus={filteredMenus} />}
+          {!isLoading && <Menu menus={filteredMenu} />}
         </Container>
       </Box>
       <SectionService />

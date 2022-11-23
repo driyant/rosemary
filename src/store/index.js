@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 
 const initState = {
   isLoading: false,
-  categories: []
+  categories: [],
+  menu: []
 }
 
 const reducer = (state = initState, action) => {
@@ -23,6 +24,12 @@ const reducer = (state = initState, action) => {
     return {
       ...state,
       categories: action.payload
+    }
+  }
+  if (action.type === "FETCH_MENU") {
+    return {
+      ...state,
+      menu: action.payload
     }
   }
   return state;
