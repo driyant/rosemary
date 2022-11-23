@@ -49,7 +49,7 @@ const Footer = () => {
     dispatch(sendEmailSubscriber(newslettersData))
       .then((resp) => {
         if (!resp.ok) {
-          showToast("Error!", `${resp.statusText}`, `error`);
+          showToast("Error!", `${resp.statusText}`, 'error');
           setNewsletterInput("");
           return;
         }
