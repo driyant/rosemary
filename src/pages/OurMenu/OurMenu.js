@@ -7,56 +7,28 @@ import SectionService from "../../components/SectionService/SectionService";
 import Footer from "../../components/Footer/Footer";
 import { Box, Heading, Text, Container, Spinner } from "@chakra-ui/react";
 import restaurantImage from "../../images/restaurant-1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories, fetchMenu } from "../../store/action";
 
 const OurMenu = () => {
-  const [menus, setMenus] = useState([]);
-  const [menusIsLoading, setMenusIsLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [categoriesIsLoading, setCategoriesIsLoading] = useState(false);
-  const [filteredMenus, setFilteredMenu] = useState([]);
-  const [activeLink, setActiveLink] = useState("");
-  const [isMenuData, setIsMenuData] = useState(false);
-
-  const fetchMenus = async () => {
-    setMenusIsLoading(true);
-    const sendingRequestMenus = await fetch(
-      `${process.env.REACT_APP_API_MENUS}`
-    );
-    const menusResponse = await sendingRequestMenus.json();
-    setMenus(menusResponse);
-    setFilteredMenu(menusResponse);
-    setMenusIsLoading(false);
-  };
-
-  const fetchCategories = async () => {
-    setCategoriesIsLoading(true);
-    const sendingRequestCategories = await fetch(
-      `${process.env.REACT_APP_API_CATEGORIES}`
-    );
-    const categoriesResponse = await sendingRequestCategories.json();
-    const getCategories = categoriesResponse.map((category) => category.name);
-    const newCategories = ["all", ...getCategories];
-    setCategories(newCategories);
-    setCategoriesIsLoading(false);
-    setActiveLink("all");
-    if (menus.length === 0) {
-      setIsMenuData(true);
-    }
-  };
+  const dispatch = useDispatch();
+  const { categories, menu, isLoading } = useSelector(state => state);
+  const [filteredMenu, setFilteredMenu] = useState([]);
+  const [activeLink, setActiveLink] = useState("all");
 
   useEffect(() => {
-    fetchMenus();
-    fetchCategories();
+    dispatch(fetchCategories())
+    dispatch(fetchMenu()).then(data => setFilteredMenu(data))
   }, []);
 
   const filterCategories = (category) => {
     if (category === "all") {
-      setFilteredMenu(menus);
+      setFilteredMenu(menu);
       setActiveLink("all");
       return;
     }
-    const newMenus = menus.filter((menu) => menu.category.name === category);
-    setFilteredMenu(newMenus);
+    const newMenu = menu.filter((menu) => menu.category.name === category);
+    setFilteredMenu(newMenu);
     setActiveLink(category);
   };
 
@@ -96,7 +68,7 @@ const OurMenu = () => {
             alignItems="center"
             flexFlow="column nowrap"
           >
-            {categoriesIsLoading && (
+            {isLoading && (
               <Box
                 mx="auto"
                 d="flex"
@@ -117,7 +89,7 @@ const OurMenu = () => {
               </Box>
             )}
           </Box>
-          {!categoriesIsLoading && (
+          {!isLoading && (
             <Category
               categories={categories}
               filterCategories={filterCategories}
@@ -125,7 +97,7 @@ const OurMenu = () => {
             />
           )}
 
-          {menusIsLoading && (
+          {isLoading && (
             <Box
               mx="auto"
               d="flex"
@@ -144,7 +116,7 @@ const OurMenu = () => {
               </Text>
             </Box>
           )}
-          {isMenuData && (
+          {/* {isMenuData && (
             <Text
               textAlign="center"
               fontFamily="var(--Bebas-Neue)"
@@ -153,8 +125,8 @@ const OurMenu = () => {
             >
               No data menu available.
             </Text>
-          )}
-          {!menusIsLoading && <Menu menus={filteredMenus} />}
+          )} */}
+          {!isLoading && <Menu menus={filteredMenu} />}
         </Container>
       </Box>
       <SectionService />
