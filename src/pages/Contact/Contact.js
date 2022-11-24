@@ -15,15 +15,17 @@ import {
 } from "@chakra-ui/react";
 import { useToast, Spinner } from "@chakra-ui/react";
 import nature from "../../images/nature.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { contactHandler } from "../../store/action";
 
 const Contact = () => {
-  const [loadingIsShow, setLoadingIsShow] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state);
   const [fullnameInput, setFullnameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [subjectInput, setSubjectInput] = useState("");
   const [messageInput, setMessageInput] = useState("");
   const toast = useToast();
-
   const fullnameInputIsValid = fullnameInput.trim() !== "";
   const emailInputIsValid =
     emailInput.trim() !== "" && emailInput.includes("@");
@@ -41,7 +43,7 @@ const Contact = () => {
     setEmailInput("");
     setSubjectInput("");
     setMessageInput("");
-  }
+  };
 
   const showToast = (title, description, status) => {
     toast({
@@ -51,67 +53,40 @@ const Contact = () => {
       duration: 9000,
       isClosable: true,
     });
-  }
+  };
 
   const formSubmitHandler = () => {
     if (!formIsValid) {
       showToast(
-        "Bad Request",
-        "Sorry cannot process, form is invalid",
+        "BAD REQUEST",
+        "Sorry cannot process, form cannot be empty!",
         "error"
-      )
+      );
       return;
     }
-    setLoadingIsShow(true);
     const contactData = {
       name: fullnameInput,
       email: emailInput,
       subject: subjectInput,
       message: messageInput,
     };
-    fetch(`${process.env.REACT_APP_API_CONTACT}`, {
-      method: "POST",
-      body: JSON.stringify(contactData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (res.ok) {
-        showToast(
-          "Success",
-          `Hi ${contactData.name} 😀, your message has been successfully!.`,
-          "success"
-        )
-        setLoadingIsShow(false);
-        resetInput();
-      }
-      else if (res.status === 429) {
-        showToast(
-          "Error",
-          `Hi ${contactData.name}, cannot process. There was so many requests, try again later! 😤`,
-          "error"
-        )
-        setLoadingIsShow(false);
-        resetInput();
-      }
-      else {
-        showToast(
-          "Error",
-          `There was an issue, you can reach us by sending email manually!`,
-          "error"
-        )
-        setLoadingIsShow(false);
-        resetInput();
-      }
-    }).catch((err) => {
-      showToast(
-        "Error",
-        `Something went wrong! ${err}`,
-        "error"
-      )
-      setLoadingIsShow(false);
-      resetInput();
-    });
+    dispatch(contactHandler(contactData))
+      .then((resp) => {
+        if (resp.ok) {
+          showToast(
+            "Success!",
+            `Hi ${contactData.name} you message has been sent successfully!`,
+            "success"
+          );
+          resetInput();
+          return;
+        } else {
+          showToast("Error!", `${resp.statusText}`, "error");
+        }
+      })
+      .catch((err) => {
+        showToast("Error!", `Something went wrong! ${err}`, "error");
+      });
   };
 
   const enteredFirstname = (e) => {
@@ -262,7 +237,7 @@ const Contact = () => {
                     onClick={formSubmitHandler}
                     as="button"
                     type="submit"
-                    disabled={loadingIsShow ? true : false}
+                    disabled={isLoading ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
@@ -277,8 +252,8 @@ const Contact = () => {
                       color: "#FFFFFF",
                     }}
                   >
-                    {loadingIsShow ? "Processing..." : "Submit"}
-                    {loadingIsShow && <Spinner ml="-30px" color='white.500' />}
+                    {isLoading ? "Processing..." : "Submit"}
+                    {isLoading && <Spinner ml="-30px" color="white.500" />}
                   </Box>
                 </Box>
               </Box>
