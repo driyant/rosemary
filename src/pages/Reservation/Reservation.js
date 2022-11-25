@@ -113,7 +113,7 @@ const Reservation = () => {
 
   const reservationSubmitHandler = (e) => {
     e.preventDefault();
-    if (firstname === "") {
+    if (firstname.trim() === "") {
       setFirstnameIsInvalid(true);
       return;
     } else if (lastname === "") {
