@@ -86,3 +86,24 @@ export const contactHandler = (data) => {
       });
   };
 };
+
+export const reservationHandler = (data) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "setLoadingTrue",
+    });
+    return fetch(`${process.env.REACT_APP_API_RESERVATION}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp)
+      .finally(() => {
+        dispatch({
+          type: "setLoadingFalse",
+        });
+      });
+  };
+};
