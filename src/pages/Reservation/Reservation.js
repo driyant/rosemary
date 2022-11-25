@@ -19,80 +19,105 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/react";
 import beachResort from "../../images/beach_resort.jpg";
-import { useToast, Spinner } from '@chakra-ui/react';
+import { useToast, Spinner } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { reservationHandler } from "../../store/action";
 
 const DUMMY_TIME_DATA = [
-  { value: "09:00", label: "09:00" },
-  { value: "10:00", label: "10:00" },
-  { value: "11:00", label: "11:00" },
-  { value: "12:30", label: "12:00" },
-  { value: "13:00", label: "13:00" },
-  { value: "14:30", label: "14:00" },
-  { value: "15:00", label: "15:00" },
-  { value: "16:30", label: "16:00" },
-  { value: "17:00", label: "17:00" },
-  { value: "18:30", label: "18:00" },
-  { value: "19:00", label: "19:00" },
-  { value: "20:30", label: "20:00" },
-  { value: "21.00", label: "21:00" },
+  { value: "09:00" },
+  { value: "10:00" },
+  { value: "11:00" },
+  { value: "12:30" },
+  { value: "13:00" },
+  { value: "14:30" },
+  { value: "15:00" },
+  { value: "16:30" },
+  { value: "17:00" },
+  { value: "18:30" },
+  { value: "19:00" },
+  { value: "20:30" },
+  { value: "21:00" },
 ];
 
-
 const Reservation = () => {
-  const [firstname,setFirstname] = useState("");
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state);
+  const [firstname, setFirstname] = useState("");
   const [firstnameIsInvalid, setFirstnameIsInvalid] = useState(false);
   const [lastname, setLastname] = useState("");
   const [lastnameIsInvalid, setLastnameIsInvalid] = useState(false);
   const [email, setEmail] = useState("");
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
-  const [person,setPerson] = useState(1);
+  const [person, setPerson] = useState(1);
   const [personIsInvalid, setPersonIsInvalid] = useState(false);
-  const [date,setDate] = useState("");
+  const [date, setDate] = useState("");
   const [dateIsInvalid, setDateIsInvalid] = useState(false);
   const [time, setTime] = useState("");
   const [timeIsInvalid, setTimeIsInvalid] = useState(false);
-  const [loadingIsShow, setLoadingIsShow] = useState(false);
   const toast = useToast();
 
-
   let today = new Date();
-  let todayNow = today.toISOString().substring(0,10);
+  let selectedDate = new Date(date);
+
+  const firstNameBlur = () => {
+    if (firstname === "" || firstname.trim() === "") {
+      setFirstnameIsInvalid(true);
+    }
+  };
+
+  const lastNameBlur = () => {
+    if (lastname === "" || lastname.trim() === "") {
+      setLastnameIsInvalid(true);
+    }
+  };
+
+  const emailBlur = () => {
+    if (email === "" || email.trim() === "" || !email.includes("@")) {
+      setEmailIsInvalid(true);
+    }
+  };
+
+  const dateBlur = () => {
+    if (
+      date === "" ||
+      date.trim() === "" ||
+      selectedDate.getDate() < today.getDate()
+    ) {
+      setDateIsInvalid(true);
+    }
+  };
+
+  const checkTime = () => {
+    const findTime = DUMMY_TIME_DATA.find((el) => time === el.value);
+    if (!findTime && time.length >= 1) {
+      setTimeIsInvalid(true);
+    }
+  };
 
   useEffect(() => {
-    if (firstname !== "") {
+    if (firstname !== "" || firstname.trim() !== "") {
       setFirstnameIsInvalid(false);
     }
-  }, [firstname]);
-
-  useEffect(() => {
-    if (lastname !== "") {
-      setLastnameIsInvalid(false)
+    if (lastname !== "" || lastname.trim() !== "") {
+      setLastnameIsInvalid(false);
     }
-  }, [lastname]);
-
-  useEffect(() => {
-    if (email !== "" && email.includes("@")) {
-      setEmailIsInvalid(false)
+    if (email !== "" || email.trim() !== "") {
+      setEmailIsInvalid(false);
     }
-  },[email]);
-
-  useEffect(() => {
-    if (person > 0 && person <= 11) {
+    if (+person > 0 && +person <= 11) {
       setPersonIsInvalid(false);
     }
-  }, [person]);
-
-  useEffect(() => {
-    if (date  !== "" && date > todayNow) {
+    if (
+      (date !== "" || date.trim() !== "") &&
+      selectedDate.getDate() > today.getDate()
+    ) {
       setDateIsInvalid(false);
     }
-  }, [date, todayNow]);
-
-  useEffect(() => {
-    if (time !== "") {
+    if (time !== "" || time.trim() !== "") {
       setTimeIsInvalid(false);
     }
-  }, [time]);
+    checkTime();
+  }, [firstname, lastname, email, person, date, time]);
 
   const showToast = (title, description, status) => {
     toast({
@@ -102,101 +127,64 @@ const Reservation = () => {
       duration: 9000,
       isClosable: true,
     });
-  }
+  };
 
   const resetInput = () => {
     setFirstname("");
     setLastname("");
     setPerson(1);
     setEmail("");
-  }
+  };
+
+  const invalidInput =
+    firstnameIsInvalid ||
+    lastnameIsInvalid ||
+    emailIsInvalid ||
+    personIsInvalid ||
+    dateIsInvalid ||
+    timeIsInvalid;
 
   const reservationSubmitHandler = (e) => {
     e.preventDefault();
-    if (firstname.trim() === "") {
-      setFirstnameIsInvalid(true);
-      return;
-    } else if (lastname === "") {
-      setLastnameIsInvalid(true);
-      return;
-    } else if (email === "") {
-      setEmailIsInvalid(true);
-      return;
-    } else if (Number(person)  <= 0 || Number(person) > 11) {
-      setPersonIsInvalid(true);
-      return;
-    } else if (date < todayNow || date === "") {
-      setDateIsInvalid(true);
-      return;
-    } else if (time === "") {
-      setTimeIsInvalid(true);
+    if (invalidInput) {
+      showToast(
+        "Error!",
+        `Sorry we can't process, please double check your input!`,
+        "error"
+      );
       return;
     }
-    setLoadingIsShow(true);
     const reservationData = {
-      "firstname" : firstname,
-      "lastname" : lastname,
-      "email" : email.toLocaleLowerCase(),
-      "person" : Number(person),
-      "date" : date,
-      "time" : time
-    }   
-    fetch(`${process.env.REACT_APP_RESERVATION}`, {
-      method: "POST",
-      body : JSON.stringify(reservationData),
-      headers: {
-        "Content-Type" : "application/json"
-      }
-    }).then((res) => {
-      if (res.ok) {
+      firstname: firstname,
+      lastname: lastname,
+      email: email.toLocaleLowerCase(),
+      person: Number(person),
+      date: date,
+      time: time,
+    };
+    dispatch(reservationHandler(reservationData))
+      .then((resp) => {
+        if (resp.ok) {
+          showToast(
+            "Success!",
+            `Hi ${reservationData.firstname}, your booking reservation has been sent successfully! Please kindly check your email in inbox/spam if it gets accepted!`,
+            "success"
+          );
+          resetInput();
+        }
+        if (!resp.ok) {
+          showToast("Error!", `${resp.statusText}`, "error");
+        }
+      })
+      .catch((err) => {
         showToast(
-          'Thank you 😀',
-          `Hi ${reservationData.firstname}, your booking reservation has been sent successfully! Please kindly check your email in inbox/spam if it gets accepted!`,
-          'success'
-        )
-        setLoadingIsShow(false);
-        resetInput();
-        e.target.reset();
-      }
-      else if (res.status === 429) {
-        showToast(
-          'Error',
-          `Hi ${reservationData.firstname}, cannot process your reservation. There was so many requests, try again later! 😤`,
-          'error'
-        )
-        setLoadingIsShow(false);
-        resetInput();
-        e.target.reset();
-      }
-      else if (res.status===409) {
-        showToast(
-          'Error',
-          "Booking date or time already exist! Please change the date or time ",
-          'error'
-        )
-        setLoadingIsShow(false);
-        resetInput();
-        e.target.reset();
-      }
-      else if (res.status===400) {
-        showToast(
-          'Error',
-          "Bad request, please check your form input!",
-          'error'
-        )
-        setLoadingIsShow(false);
-      }
-    }).catch((err) => {
-      showToast(
-        'Sorry 🙁, there is an issue',
-        `If this problem still persists you can contact us for your reservation. ${err}`,
-        'error'
-      )
-      setLoadingIsShow(false);
-      resetInput();
-      e.target.reset();
-    });
-  }
+          `Sorry 🙁, there is an issue, ${err}`,
+          `If this problem still persists you can contact us for your reservation`,
+          "error"
+        );
+      });
+  };
+
   return (
     <>
       <Nav />
@@ -281,7 +269,11 @@ const Reservation = () => {
               rosemary's number or email.
             </Text>
           </Box>
-          <FormControl w={{ lg: "49%" }} as="form" onSubmit={reservationSubmitHandler}>
+          <FormControl
+            w={{ lg: "49%" }}
+            as="form"
+            onSubmit={reservationSubmitHandler}
+          >
             <Stack spacing="20px">
               <Input
                 variant="outline"
@@ -293,11 +285,16 @@ const Reservation = () => {
                 color="#494949"
                 textTransform="capitalize"
                 isInvalid={firstnameIsInvalid ? true : false}
-                onChange={(e) =>  setFirstname(e.target.value)}
+                onChange={(e) => setFirstname(e.target.value)}
                 value={firstname}
                 isRequired={true}
+                onBlur={firstNameBlur}
               />
-              { firstnameIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter the firstname ☝️</Text>}
+              {firstnameIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter the firstname ☝️
+                </Text>
+              )}
               <Input
                 variant="outline"
                 placeholder="LASTNAME*"
@@ -311,8 +308,13 @@ const Reservation = () => {
                 onChange={(e) => setLastname(e.target.value)}
                 value={lastname}
                 isRequired={true}
+                onBlur={lastNameBlur}
               />
-              { lastnameIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter the lastname ☝️</Text>}
+              {lastnameIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter the lastname ☝️
+                </Text>
+              )}
               <Input
                 variant="outline"
                 placeholder="EMAIL*"
@@ -326,8 +328,13 @@ const Reservation = () => {
                 value={email}
                 isInvalid={emailIsInvalid ? true : false}
                 isRequired={true}
+                onBlur={emailBlur}
               />
-              { emailIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid email ☝️</Text>}
+              {emailIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter a valid email ☝️
+                </Text>
+              )}
               <NumberInput
                 min={1}
                 max={11}
@@ -349,7 +356,11 @@ const Reservation = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              { personIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid number min 1 person and max 11 persons ☝️</Text>}
+              {personIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter a valid number min 1 person and max 11 persons ☝️
+                </Text>
+              )}
               <Input
                 type="date"
                 variant="outline"
@@ -361,10 +372,15 @@ const Reservation = () => {
                 color="#494949"
                 required
                 onChange={(e) => setDate(e.target.value)}
-                isInvalid={dateIsInvalid ? true: false}
+                isInvalid={dateIsInvalid ? true : false}
                 isRequired={true}
+                onBlur={dateBlur}
               />
-              { dateIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid date ☝️</Text>}
+              {dateIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter a valid date ☝️, date before today is invalid!
+                </Text>
+              )}
               <Select
                 placeholder="-- Choose Time --"
                 bgColor="#E2E8F0"
@@ -372,15 +388,23 @@ const Reservation = () => {
                 letterSpacing="1.5px"
                 borderRadius="0"
                 color="#494949"
-                onChange={(e) =>setTime(e.target.value)}
+                onChange={(e) => setTime(e.target.value)}
                 isInvalid={timeIsInvalid ? true : false}
                 isRequired={true}
               >
-                {DUMMY_TIME_DATA.map((time) => {
-                  return <option key={time.value}>{time.label}</option>;
+                {DUMMY_TIME_DATA.map((time, index) => {
+                  return (
+                    <option key={index} value={time.value}>
+                      {time.value}
+                    </option>
+                  );
                 })}
               </Select>
-              { timeIsInvalid && <Text fontFamily="var(--Poppins)" color="red">Please enter a valid time ☝️</Text>}
+              {timeIsInvalid && (
+                <Text fontFamily="var(--Poppins)" color="red">
+                  Please enter a valid time ☝️
+                </Text>
+              )}
               <Box d="flex" justifyContent="flex-end">
                 <Box
                   h="60px"
@@ -392,7 +416,7 @@ const Reservation = () => {
                   <Box
                     as="button"
                     type="submit"
-                    disabled={loadingIsShow ? true : false}
+                    disabled={isLoading ? true : false}
                     style={{
                       border: "2px solid rgba(241, 241, 241, 0.8)",
                       width: "100%",
@@ -407,9 +431,8 @@ const Reservation = () => {
                       color: "#FFFFFF",
                     }}
                   >
-                   
-                   {loadingIsShow ? "Processing..." : "Submit"}
-                   {loadingIsShow && <Spinner ml="-30px" color='white.500' />}
+                    {isLoading ? "Processing..." : "Submit"}
+                    {isLoading && <Spinner ml="-30px" color="white.500" />}
                   </Box>
                 </Box>
               </Box>
