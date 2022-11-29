@@ -46,6 +46,7 @@ const SectionTodayMenu = () => {
               objectPosition="cover"
               w="100%"
               h={{ base: "173px", md: "250px", lg : "250px" }}
+              lazy="loading"
             />
           </Box>
         </Box>
