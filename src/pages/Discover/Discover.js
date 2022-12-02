@@ -41,6 +41,7 @@ const Discover = () => {
               ml="5rem"
               mt="2rem"
               maxWidth="80%"
+              lazy="loading"
             />
           </Box>
           <Box
@@ -60,6 +61,7 @@ const Discover = () => {
               objectPosition="cover"
               w="100%"
               h={{ base: "173px", md: "250px", lg: "250px" }}
+              lazy="loading"
             />
           </Box>
         </Box>
