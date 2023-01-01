@@ -81,7 +81,7 @@ const Reservation = () => {
     if (
       date === "" ||
       date.trim() === "" ||
-      selectedDate.getDate() < today.getDate()
+      selectedDate < today
     ) {
       setDateIsInvalid(true);
     }
@@ -109,7 +109,7 @@ const Reservation = () => {
     }
     if (
       (date !== "" || date.trim() !== "") &&
-      selectedDate.getDate() > today.getDate()
+      selectedDate > today
     ) {
       setDateIsInvalid(false);
     }
