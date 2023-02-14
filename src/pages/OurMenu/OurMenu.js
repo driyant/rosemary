@@ -19,7 +19,7 @@ const OurMenu = () => {
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchMenu()).then(data => setFilteredMenu(data))
-  }, []);
+  }, [dispatch]);
 
   const filterCategories = (category) => {
     if (category === "all") {
