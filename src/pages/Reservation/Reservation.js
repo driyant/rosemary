@@ -117,6 +117,7 @@ const Reservation = () => {
       setTimeIsInvalid(false);
     }
     checkTime();
+    // eslint-disable-next-line
   }, [firstname, lastname, email, person, date, time]);
 
   const showToast = (title, description, status) => {
