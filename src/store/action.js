@@ -1,9 +1,11 @@
+const baseUrl = "https://www.rosemary-server.helloriyan.my.id"
+
 export const fetchCategories = () => {
   return (dispatch, getState) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${process.env.REACT_APP_API_CATEGORIES}`)
+    return fetch(`${baseUrl}/api/categories`)
       .then((resp) => resp.json())
       .then((resp) => {
         const categories = resp.map((resp) => resp.name);
@@ -28,7 +30,7 @@ export const fetchMenu = () => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${process.env.REACT_APP_API_MENU}`)
+    return fetch(`${baseUrl}/api/menus`)
       .then((resp) => resp.json())
       .then((data) => {
         dispatch({
@@ -50,7 +52,7 @@ export const sendEmailSubscriber = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${process.env.REACT_APP_NEWSLETTER}`, {
+    return fetch(`${baseUrl}/newsletter/add`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -71,7 +73,7 @@ export const contactHandler = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${process.env.REACT_APP_API_CONTACT}`, {
+    return fetch(`${baseUrl}/api/contact`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -92,7 +94,7 @@ export const reservationHandler = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${process.env.REACT_APP_API_RESERVATION}`, {
+    return fetch(`${baseUrl}/reservation/add`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
