@@ -4,7 +4,8 @@ import thunk from 'redux-thunk';
 const initState = {
   isLoading: false,
   categories: [],
-  menu: []
+  menu: [],
+  openingHours: []
 }
 
 const reducer = (state = initState, action) => {
@@ -30,6 +31,12 @@ const reducer = (state = initState, action) => {
     return {
       ...state,
       menu: action.payload
+    }
+  }
+  if (action.type === "FETCH_OPENING_HOURS") {
+    return {
+      ...state,
+      openingHours: action.payload
     }
   }
   return state;

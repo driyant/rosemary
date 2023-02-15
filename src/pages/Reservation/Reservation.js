@@ -22,25 +22,11 @@ import beachResort from "../../images/beach_resort.jpg";
 import { useToast, Spinner } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { reservationHandler } from "../../store/action";
-
-const DUMMY_TIME_DATA = [
-  { value: "09:00" },
-  { value: "10:00" },
-  { value: "11:00" },
-  { value: "12:30" },
-  { value: "13:00" },
-  { value: "14:30" },
-  { value: "15:00" },
-  { value: "16:30" },
-  { value: "17:00" },
-  { value: "18:30" },
-  { value: "19:00" },
-  { value: "20:30" },
-  { value: "21:00" },
-];
+import { fetchOpeningHours } from "../../store/action";
 
 const Reservation = () => {
   const dispatch = useDispatch();
+  const { openingHours } = useSelector(state => state);
   const { isLoading } = useSelector((state) => state);
   const [firstname, setFirstname] = useState("");
   const [firstnameIsInvalid, setFirstnameIsInvalid] = useState(false);
@@ -52,7 +38,7 @@ const Reservation = () => {
   const [personIsInvalid, setPersonIsInvalid] = useState(false);
   const [date, setDate] = useState("");
   const [dateIsInvalid, setDateIsInvalid] = useState(false);
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(undefined);
   const [timeIsInvalid, setTimeIsInvalid] = useState(false);
   const toast = useToast();
 
@@ -87,12 +73,17 @@ const Reservation = () => {
     }
   };
 
-  const checkTime = () => {
-    const findTime = DUMMY_TIME_DATA.find((el) => time === el.value);
-    if (!findTime && time.length >= 1) {
-      setTimeIsInvalid(true);
-    }
-  };
+  const timeBlur = () => {
+    if (!time) setTimeIsInvalid(true);
+  }
+
+  // const checkTime = () => {
+  //   // const findTime = openingHours.find((el) => time === el.value);
+  //   // if (!findTime && time.length >= 1) {
+  //   //   setTimeIsInvalid(true);
+  //   // }
+  //   if (time === undefined) setTimeIsInvalid(true); 
+  // };
 
   useEffect(() => {
     if (firstname !== "" || firstname.trim() !== "") {
@@ -116,9 +107,15 @@ const Reservation = () => {
     if (time !== "" || time.trim() !== "") {
       setTimeIsInvalid(false);
     }
-    checkTime();
+    // checkTime();
+    // timeBlur();
     // eslint-disable-next-line
   }, [firstname, lastname, email, person, date, time]);
+
+  useEffect(() => {
+    dispatch(fetchOpeningHours())
+    // eslint-disable-next-line
+  }, [])
 
   const showToast = (title, description, status) => {
     toast({
@@ -392,11 +389,12 @@ const Reservation = () => {
                 onChange={(e) => setTime(e.target.value)}
                 isInvalid={timeIsInvalid ? true : false}
                 isRequired={true}
+                onBlur={timeBlur}
               >
-                {DUMMY_TIME_DATA.map((time, index) => {
+                {openingHours.map((hour, index) => {
                   return (
-                    <option key={index} value={time.value}>
-                      {time.value}
+                    <option key={index} value={hour}>
+                      {hour}
                     </option>
                   );
                 })}
