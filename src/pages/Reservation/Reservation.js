@@ -38,7 +38,7 @@ const Reservation = () => {
   const [personIsInvalid, setPersonIsInvalid] = useState(false);
   const [date, setDate] = useState("");
   const [dateIsInvalid, setDateIsInvalid] = useState(false);
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(undefined);
   const [timeIsInvalid, setTimeIsInvalid] = useState(false);
   const toast = useToast();
 
@@ -73,12 +73,17 @@ const Reservation = () => {
     }
   };
 
-  const checkTime = () => {
-    const findTime = openingHours.find((el) => time === el.value);
-    if (!findTime && time.length >= 1) {
-      setTimeIsInvalid(true);
-    }
-  };
+  const timeBlur = () => {
+    if (!time) setTimeIsInvalid(true);
+  }
+
+  // const checkTime = () => {
+  //   // const findTime = openingHours.find((el) => time === el.value);
+  //   // if (!findTime && time.length >= 1) {
+  //   //   setTimeIsInvalid(true);
+  //   // }
+  //   if (time === undefined) setTimeIsInvalid(true); 
+  // };
 
   useEffect(() => {
     if (firstname !== "" || firstname.trim() !== "") {
@@ -102,12 +107,14 @@ const Reservation = () => {
     if (time !== "" || time.trim() !== "") {
       setTimeIsInvalid(false);
     }
-    checkTime();
+    // checkTime();
+    // timeBlur();
     // eslint-disable-next-line
   }, [firstname, lastname, email, person, date, time]);
 
   useEffect(() => {
     dispatch(fetchOpeningHours())
+    // eslint-disable-next-line
   }, [])
 
   const showToast = (title, description, status) => {
@@ -382,6 +389,7 @@ const Reservation = () => {
                 onChange={(e) => setTime(e.target.value)}
                 isInvalid={timeIsInvalid ? true : false}
                 isRequired={true}
+                onBlur={timeBlur}
               >
                 {openingHours.map((hour, index) => {
                   return (
