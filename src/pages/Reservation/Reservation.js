@@ -24,22 +24,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { reservationHandler } from "../../store/action";
 import { fetchOpeningHours } from "../../store/action";
 
-const DUMMY_TIME_DATA = [
-  { value: "09:00" },
-  { value: "10:00" },
-  { value: "11:00" },
-  { value: "12:30" },
-  { value: "13:00" },
-  { value: "14:30" },
-  { value: "15:00" },
-  { value: "16:30" },
-  { value: "17:00" },
-  { value: "18:30" },
-  { value: "19:00" },
-  { value: "20:30" },
-  { value: "21:00" },
-];
-
 const Reservation = () => {
   const dispatch = useDispatch();
   const { openingHours } = useSelector(state => state);
@@ -90,7 +74,7 @@ const Reservation = () => {
   };
 
   const checkTime = () => {
-    const findTime = DUMMY_TIME_DATA.find((el) => time === el.value);
+    const findTime = openingHours.find((el) => time === el.value);
     if (!findTime && time.length >= 1) {
       setTimeIsInvalid(true);
     }
@@ -135,8 +119,6 @@ const Reservation = () => {
       isClosable: true,
     });
   };
-
-  console.log(openingHours, "<<<<<<<<<<");
 
   const resetInput = () => {
     setFirstname("");
@@ -401,10 +383,10 @@ const Reservation = () => {
                 isInvalid={timeIsInvalid ? true : false}
                 isRequired={true}
               >
-                {DUMMY_TIME_DATA.map((time, index) => {
+                {openingHours.map((hour, index) => {
                   return (
-                    <option key={index} value={time.value}>
-                      {time.value}
+                    <option key={index} value={hour}>
+                      {hour}
                     </option>
                   );
                 })}
