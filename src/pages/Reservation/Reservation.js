@@ -22,6 +22,7 @@ import beachResort from "../../images/beach_resort.jpg";
 import { useToast, Spinner } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { reservationHandler } from "../../store/action";
+import { fetchOpeningHours } from "../../store/action";
 
 const DUMMY_TIME_DATA = [
   { value: "09:00" },
@@ -41,6 +42,7 @@ const DUMMY_TIME_DATA = [
 
 const Reservation = () => {
   const dispatch = useDispatch();
+  const { openingHours } = useSelector(state => state);
   const { isLoading } = useSelector((state) => state);
   const [firstname, setFirstname] = useState("");
   const [firstnameIsInvalid, setFirstnameIsInvalid] = useState(false);
@@ -120,6 +122,10 @@ const Reservation = () => {
     // eslint-disable-next-line
   }, [firstname, lastname, email, person, date, time]);
 
+  useEffect(() => {
+    dispatch(fetchOpeningHours())
+  }, [])
+
   const showToast = (title, description, status) => {
     toast({
       title: `${title}`,
@@ -129,6 +135,8 @@ const Reservation = () => {
       isClosable: true,
     });
   };
+
+  console.log(openingHours, "<<<<<<<<<<");
 
   const resetInput = () => {
     setFirstname("");

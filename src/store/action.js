@@ -1,4 +1,4 @@
-const baseUrl = "https://www.rosemary-server.helloriyan.my.id"
+const baseUrl = "http://127.0.0.1:5000"
 
 export const fetchCategories = () => {
   return (dispatch, getState) => {
@@ -109,3 +109,14 @@ export const reservationHandler = (data) => {
       });
   };
 };
+
+export const fetchOpeningHours = () => {
+  return (dispatch, getState) => {
+    return fetch(`${baseUrl}/reservation/opening-hours`)
+    .then(resp => resp.json())
+    .then(data => dispatch({
+      type: "FETCH_OPENING_HOURS",
+      payload: data
+    }))
+  }
+}
