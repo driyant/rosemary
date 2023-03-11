@@ -17,6 +17,7 @@ jobs:
     - name: 🛠️ Build project
       run: |
         npm install
+        npm audit fix --force
         npm run build
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
