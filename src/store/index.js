@@ -30,7 +30,7 @@ const reducer = (state = initState, action) => {
   if (action.type === "FETCH_MENU") {
     return {
       ...state,
-      menu: action.payload
+      menu: action.payload,
     }
   }
   if (action.type === "FETCH_OPENING_HOURS") {

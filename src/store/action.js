@@ -37,7 +37,6 @@ export const fetchMenu = () => {
           type: "FETCH_MENU",
           payload: data,
         });
-        return data;
       })
       .finally(() => {
         dispatch({

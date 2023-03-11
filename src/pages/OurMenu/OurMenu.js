@@ -12,24 +12,25 @@ import { fetchCategories, fetchMenu } from "../../store/action";
 
 const OurMenu = () => {
   const dispatch = useDispatch();
-  const { categories, menu, isLoading } = useSelector(state => state);
-  const [filteredMenu, setFilteredMenu] = useState([]);
+  const { categories, menu, isLoading } = useSelector((state) => state);
+  const [filteredMenu, setFilteredMenu] = useState(null);
   const [activeLink, setActiveLink] = useState("all");
 
   useEffect(() => {
-    dispatch(fetchCategories())
-    dispatch(fetchMenu()).then(data => setFilteredMenu(data))
+    dispatch(fetchCategories());
+    dispatch(fetchMenu());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const filterCategories = (category) => {
     if (category === "all") {
       setFilteredMenu(menu);
       setActiveLink("all");
-      return;
+    } else {
+      const newMenu = menu.filter((menu) => menu.category.name === category);
+      setFilteredMenu(newMenu);
+      setActiveLink(category);
     }
-    const newMenu = menu.filter((menu) => menu.category.name === category);
-    setFilteredMenu(newMenu);
-    setActiveLink(category);
   };
 
   return (
@@ -117,7 +118,7 @@ const OurMenu = () => {
             </Box>
           )}
           {/* {!isLoading && <Menu menus={filteredMenu} />} */}
-          <Menu menus={filteredMenu} isLoading={isLoading}/>
+          <Menu menus={!filteredMenu ? menu : filteredMenu} isLoading={isLoading} />
         </Container>
       </Box>
       <SectionService />
