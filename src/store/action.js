@@ -1,4 +1,4 @@
-const baseUrl = "https://www.rosemary-server.helloriyan.my.id"
+const baseUrl = process.env.REACT_APP_PUBLIC_URL;
 
 export const fetchCategories = () => {
   return (dispatch, getState) => {
@@ -112,10 +112,12 @@ export const reservationHandler = (data) => {
 export const fetchOpeningHours = () => {
   return (dispatch, getState) => {
     return fetch(`${baseUrl}/reservation/opening-hours`)
-    .then(resp => resp.json())
-    .then(data => dispatch({
-      type: "FETCH_OPENING_HOURS",
-      payload: data
-    }))
-  }
-}
+      .then((resp) => resp.json())
+      .then((data) =>
+        dispatch({
+          type: "FETCH_OPENING_HOURS",
+          payload: data,
+        })
+      );
+  };
+};
