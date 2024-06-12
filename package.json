@@ -28,8 +28,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "env-cmd -f .env.local react-scripts start --legagcy-peer-deps",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build --legagcy-peer-deps",
+    "start": "env-cmd -f .env.local react-scripts start --legacy-peer-deps",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build --legacy-peer-deps",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
