@@ -26,7 +26,7 @@ import { fetchOpeningHours } from "../../store/action";
 
 const Reservation = () => {
   const dispatch = useDispatch();
-  const { openingHours } = useSelector(state => state);
+  const { openingHours } = useSelector((state) => state);
   const { isLoading } = useSelector((state) => state);
   const [firstname, setFirstname] = useState("");
   const [firstnameIsInvalid, setFirstnameIsInvalid] = useState(false);
@@ -64,26 +64,14 @@ const Reservation = () => {
   };
 
   const dateBlur = () => {
-    if (
-      date === "" ||
-      date.trim() === "" ||
-      selectedDate < today
-    ) {
+    if (selectedDate.getDate() < today.getDate()) {
       setDateIsInvalid(true);
     }
   };
 
   const timeBlur = () => {
     if (!time) setTimeIsInvalid(true);
-  }
-
-  // const checkTime = () => {
-  //   // const findTime = openingHours.find((el) => time === el.value);
-  //   // if (!findTime && time.length >= 1) {
-  //   //   setTimeIsInvalid(true);
-  //   // }
-  //   if (time === undefined) setTimeIsInvalid(true); 
-  // };
+  };
 
   useEffect(() => {
     if (firstname !== "" || firstname.trim() !== "") {
@@ -98,24 +86,19 @@ const Reservation = () => {
     if (+person > 0 && +person <= 11) {
       setPersonIsInvalid(false);
     }
-    if (
-      (date !== "" || date.trim() !== "") &&
-      selectedDate > today
-    ) {
+    if (selectedDate.getDate() >= today.getDate()) {
       setDateIsInvalid(false);
     }
     if (time !== "" || time.trim() !== "") {
       setTimeIsInvalid(false);
     }
-    // checkTime();
-    // timeBlur();
     // eslint-disable-next-line
   }, [firstname, lastname, email, person, date, time]);
 
   useEffect(() => {
-    dispatch(fetchOpeningHours())
+    dispatch(fetchOpeningHours());
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   const showToast = (title, description, status) => {
     toast({
