@@ -1,46 +1,46 @@
 import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
 
 const initState = {
   isLoading: false,
   categories: [],
   menu: [],
-  openingHours: []
-}
+  openingHours: [],
+};
 
-const reducer = (state = initState, action) => {
+export const reducer = (state = initState, action) => {
   if (action.type === "setLoadingTrue") {
     return {
       ...state,
-      isLoading: true
-    }
+      isLoading: true,
+    };
   }
   if (action.type === "setLoadingFalse") {
     return {
       ...state,
-      isLoading: false
-    }
+      isLoading: false,
+    };
   }
-  if (action.type === 'FETCH_CATEGORIES') {
+  if (action.type === "FETCH_CATEGORIES") {
     return {
       ...state,
-      categories: action.payload
-    }
+      categories: action.payload,
+    };
   }
   if (action.type === "FETCH_MENU") {
     return {
       ...state,
       menu: action.payload,
-    }
+    };
   }
   if (action.type === "FETCH_OPENING_HOURS") {
     return {
       ...state,
-      openingHours: action.payload
-    }
+      openingHours: action.payload,
+    };
   }
   return state;
-}
+};
 
 const store = createStore(reducer, applyMiddleware(thunk));
 

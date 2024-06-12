@@ -28,9 +28,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "env-cmd -f .env.local react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test",
+    "start": "env-cmd -f .env.local react-scripts start --legagcy-peer-deps",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build --legagcy-peer-deps",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,6 +52,8 @@
     ]
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "jest-fetch-mock": "^3.0.3",
+    "redux-mock-store": "^1.5.4"
   }
 }
