@@ -1,6 +1,6 @@
 {
   "name": "rosemary-v2",
-  "homepage": "https://rosemary.helloriyan.my.id",
+  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,6 +26,9 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
     "web-vitals": "^1.1.2"
+  },
+  "engines": {
+    "node": "16.20.2"
   },
   "scripts": {
     "start": "env-cmd -f .env.local react-scripts start --legacy-peer-deps",
