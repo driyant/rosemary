@@ -5,7 +5,7 @@ export const fetchCategories = () => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/api/categories`)
+    return fetch(`${baseUrl}/api/rosemary/categories`)
       .then((resp) => resp.json())
       .then((resp) => {
         const categories = resp.map((resp) => resp.name);
@@ -30,7 +30,7 @@ export const fetchMenu = () => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/api/menus`)
+    return fetch(`${baseUrl}/api/rosemary/menus`)
       .then((resp) => resp.json())
       .then((data) => {
         dispatch({
@@ -51,7 +51,7 @@ export const sendEmailSubscriber = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/newsletter/add`, {
+    return fetch(`${baseUrl}/api/rosemary/newsletter`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -72,7 +72,7 @@ export const contactHandler = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/api/contact`, {
+    return fetch(`${baseUrl}/api/rosemary/contact`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -93,7 +93,7 @@ export const reservationHandler = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/reservation/add`, {
+    return fetch(`${baseUrl}/api/rosemary/reservation/add`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -111,7 +111,7 @@ export const reservationHandler = (data) => {
 
 export const fetchOpeningHours = () => {
   return (dispatch, getState) => {
-    return fetch(`${baseUrl}/reservation/opening-hours`)
+    return fetch(`${baseUrl}/api/rosemary/reservation/opening-hours`)
       .then((resp) => resp.json())
       .then((data) =>
         dispatch({
