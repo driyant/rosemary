@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@fontsource/bebas-neue": "^5.1.0",
+    "@fontsource/libre-baskerville": "^5.1.0",
     "framer-motion": "^11.3.28",
     "next": "14.2.5",
     "react": "^18",

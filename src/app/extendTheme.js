@@ -1,9 +1,18 @@
-/* theme.ts */
+import "@fontsource/bebas-neue";
+import "@fontsource/libre-baskerville";
 import { extendTheme } from "@chakra-ui/react";
 
-export const theme = extendTheme({
+const customTheme = extendTheme({
   fonts: {
-    heading: "var(--font-rubik)",
-    body: "var(--font-rubik)",
+    body: "Bebas Neue, sans-serif",
+    heading: "Libre Baskerville, serif",
+  },
+  textStyles: {
+    h4: {
+      fontFamily: "Libre Baskerville, serif",
+      fontSize: "1.25rem",
+    },
   },
 });
+
+export default customTheme;

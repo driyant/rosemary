@@ -1,20 +1,29 @@
-import Image from "next/image";
+"use client";
+import React from "react";
 import {
   Box,
-  Flex,
-  Text,
-  Link,
-  Button,
-  ListItem,
+  Image,
   Heading,
   UnorderedList,
+  ListItem,
+  Text,
+  Link as ChakraLink,
+  Flex,
 } from "@chakra-ui/react";
-import { useBoolean } from "@chakra-ui/react";
-import bgResort from "../../public/images/resort.jpg";
+import Link from "next/link";
+import ButtonPrimary from "./components/ButtonPrimary";
+import ButtonSecondary from "./components/ButtonSecondary";
+import { useBoolean } from "@chakra-ui/hooks";
+import bgImage from "../../public/images/resort.jpg";
+import rosemaryWhite from "../../public/images/rosemary-white.png";
+import { motion } from "framer-motion";
 
-export default function Home() {
-  // const [isOpen, setIsOpen] = useBoolean();
-  console.log(bgResort);
+const MotionText = motion(Text);
+const MotionButtonSecondary = motion(ButtonSecondary);
+const MotionHeading = motion(Heading);
+
+const Homepage = () => {
+  const [isOpen, setIsOpen] = useBoolean();
   return (
     <>
       <Box
@@ -26,16 +35,15 @@ export default function Home() {
         bgSize="cover"
         bgColor="rgba(0, 0, 0, 0.65)"
         overflowX="hidden"
-        style={{ backgroundImage: `url(${bgResort.src})` }}
+        style={{ backgroundImage: `url(${bgImage.src})` }}
         pos={{ base: "relative", lg: "static" }}
       >
         {/* Navbar */}
         <Box
-          as="nav"
           w="100vw"
           h="150px"
           borderBottom="2px solid rgba(233, 233, 233, 0.8)"
-          d="flex"
+          display="flex"
           justifyContent="space-between"
           alignItems="center"
           px={{ base: "0", lg: "3rem" }}
@@ -43,29 +51,19 @@ export default function Home() {
         >
           {/*  Logo wrapper */}
           <Box
-            d="flex"
-            flexDir="row"
+            display="flex"
+            flexDirection="row"
             justifyContent="center"
             alignItems="center"
           >
-            <Link
-              to="/"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {/* <Image src={rosemaryWhite} alt="Rosemary" /> */}
-              <Heading
-                fontWeight="600"
-                color="#ffffff"
-                fontFamily="var(--Libre-Baskerville)"
-              >
-                Rosemary
-              </Heading>
-            </Link>
+            <ChakraLink as={Link} href="/">
+              <Flex justify="center" align="center">
+                <Image src={rosemaryWhite.src} alt="Rosemary" />
+                <Heading fontWeight="600" color="#ffffff">
+                  Rosemary
+                </Heading>
+              </Flex>
+            </ChakraLink>
           </Box>
           {/*  End Logo wrapper */}
           {/* Naviation Links */}
@@ -77,16 +75,17 @@ export default function Home() {
             h={{ base: "100%", lg: "auto" }}
             top="0"
             left="-16px"
-            d="flex"
-            flexDir={{ base: "column", lg: "row" }}
+            display="flex"
+            flexDirection={{ base: "column", lg: "row" }}
             justifyContent="center"
             alignItems="center"
             backgroundColor={{ base: "rgba(65, 65, 65)", lg: "transparent" }}
             opacity="87%"
             transform={{
-              // base: `${isOpen ? "translateX(0)" : "translateX(1000px)"}`,
+              base: `${isOpen ? "translateX(0)" : "translateX(1000px)"}`,
               lg: "translateX(0)",
             }}
+            style={{ fontFamily: "var(--Bebas-Neue)" }}
             transition="0.5s ease"
           >
             <ListItem
@@ -105,7 +104,7 @@ export default function Home() {
               transition="0.5s ease"
               letterSpacing={{ base: "auto", lg: "2px" }}
             >
-              <Link to="/discover">discover</Link>
+              <Link href="/discover">discover</Link>
             </ListItem>
             <ListItem
               fontFamily={{
@@ -123,7 +122,7 @@ export default function Home() {
               my={{ base: "1.5rem", lg: "auto" }}
               letterSpacing={{ base: "auto", lg: "2px" }}
             >
-              <Link to="/menu">our menu</Link>
+              <Link href="/menu">our menu</Link>
             </ListItem>
             <ListItem
               fontFamily={{
@@ -141,7 +140,7 @@ export default function Home() {
               mx={{ base: "auto", lg: "1rem" }}
               letterSpacing={{ base: "auto", lg: "2px" }}
             >
-              <Link to="/contact">contact</Link>
+              <Link href="/contact">contact</Link>
             </ListItem>
             <ListItem
               listStyleType="none"
@@ -158,20 +157,20 @@ export default function Home() {
               }}
               transition="all 0.5s ease"
               my={{ base: "1.5rem", lg: "auto" }}
-              d={{ base: "block", lg: "none" }}
+              display={{ base: "block", lg: "none" }}
             >
-              <Link to="/reservation">book reservation</Link>
+              <Link href="/reservation">book reservation</Link>
             </ListItem>
           </UnorderedList>
           {/* End Naviation Links */}
           {/* Hamburger */}
           <Box
-            d={{ base: "flex", lg: "none" }}
-            flexDir="row"
+            display={{ base: "flex", lg: "none" }}
+            flexDirection="row"
             alignItems="center"
             marginTop={{ base: "0.5rem" }}
             marginRight={{ base: "0.875rem" }}
-            zIndex="4"
+            zIndex={4}
           >
             <Text
               textTransform="uppercase"
@@ -182,18 +181,18 @@ export default function Home() {
               lineHeight="1px"
               style={{ fontFamily: "var(--Bebas-Neue)" }}
             >
-              {/* {isOpen ? "close" : "menu"} */}
+              {isOpen ? "close" : "menu"}
             </Text>
             <Box
-              d="flex"
-              flexDir="column"
+              display="flex"
+              flexDirection="column"
               justifyContent="space-evenly"
               alignItems="center"
               cursor="pointer"
               h="50px"
               w="50px"
               transition="all 0.5s ease"
-              // onClick={setIsOpen.toggle}
+              onClick={setIsOpen.toggle}
             >
               <Box
                 backgroundColor="white"
@@ -201,23 +200,22 @@ export default function Home() {
                 border="1px solid white"
                 w="60%"
                 borderRadius="12px"
-                // transform={isOpen ? "rotate(45deg) translate(7px, 6px)" : ""}
+                transform={isOpen ? "rotate(45deg) translate(7px, 6px)" : ""}
                 transition="all 0.5s ease"
               ></Box>
               <Box
                 backgroundColor="white"
-                h="1px"
+                height="1px"
                 border="1px solid white"
-                w="60%"
+                width="60%"
                 borderRadius="12px"
-                // transform={isOpen ? "rotate(-45deg) translate(6px, -6px)" : ""}
+                transform={isOpen ? "rotate(-45deg) translate(6px, -6px)" : ""}
                 transition="all 0.5s ease"
               ></Box>
             </Box>
           </Box>
           {/* End Hamburger */}
-          {/* <ButtonPrimary>book table</ButtonPrimary> */}
-          <Button>Book Table</Button>
+          <ButtonPrimary>book table</ButtonPrimary>
         </Box>
         {/* End Navbar */}
         <Box
@@ -228,10 +226,10 @@ export default function Home() {
             lg: "13rem",
           }}
           marginLeft={{ base: "1.4rem", lg: "4.5rem" }}
-          // d={isOpen ? "none" : "block"}
+          display={isOpen ? "none" : "block"}
           transition="all 1s ease-in-out"
         >
-          {/* <MotionHeading
+          <MotionHeading
             color="#CD916D"
             fontFamily="var(--Bebas-Neue)"
             letterSpacing="1.5px"
@@ -244,8 +242,9 @@ export default function Home() {
             rosemary restaurant
           </MotionHeading>
           <MotionText
+            as="h4"
+            textStyle="h4"
             color="white"
-            fontFamily="var(--Libre-Baskerville)"
             fontSize="28px"
             my="1rem"
             initial={{ opacity: 0 }}
@@ -253,11 +252,13 @@ export default function Home() {
             transition={{ delay: 1 }}
           >
             "A good restaurant is like a vacation; it transports you, and it
-            becomes a lot more than just about the food"
+            becomes a lot more than just about the food."
           </MotionText>
-          <MotionButtonSecondary>check the menu</MotionButtonSecondary> */}
+          <MotionButtonSecondary>check the menu</MotionButtonSecondary>
         </Box>
       </Box>
     </>
   );
-}
+};
+
+export default Homepage;

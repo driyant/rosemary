@@ -1,7 +1,12 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import customTheme from "./extendTheme";
 
 export function Providers({ children }) {
-  return <ChakraProvider>{children}</ChakraProvider>;
+  return (
+    <ChakraProvider resetCSS theme={customTheme}>
+      {children}
+    </ChakraProvider>
+  );
 }
