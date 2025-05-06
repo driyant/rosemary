@@ -93,7 +93,7 @@ export const reservationHandler = (data) => {
     dispatch({
       type: "setLoadingTrue",
     });
-    return fetch(`${baseUrl}/api/rosemary/reservation/add`, {
+    return fetch(`${baseUrl}/api/rosemary/reservation`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
