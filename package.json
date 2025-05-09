@@ -27,12 +27,9 @@
     "redux-thunk": "^2.4.2",
     "web-vitals": "^1.1.2"
   },
-  "engines": {
-    "node": "18"
-  },
   "scripts": {
-    "start": "env-cmd -f .env.local react-scripts start --legacy-peer-deps",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build --legacy-peer-deps",
+    "start": "env-cmd -f .env.local react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
@@ -41,6 +38,9 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "engines": {
+    "node": "16.13.0"
   },
   "browserslist": {
     "production": [
