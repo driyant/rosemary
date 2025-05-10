@@ -39,7 +39,10 @@ const OurMenu = () => {
       setIsMenuLoading(true);
       const resp = await fetch(`${getMenuUrl}`);
       const data = await resp.json();
-      if (resp.ok) setMenu(data);
+      if (resp.ok) {
+        setMenu(data);
+        setFilteredMenu(data);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -50,8 +53,8 @@ const OurMenu = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // await Promise.all([fetchCategories(), fetchMenu()]);
-        fetchCategories().then(() => fetchMenu());
+        fetchCategories();
+        fetchMenu();
       } catch (error) {
         console.error("Failed to load initial data:", error);
       }
@@ -61,8 +64,8 @@ const OurMenu = () => {
 
   const filterCategories = (category) => {
     if (category === "all") {
-      setFilteredMenu(menu);
       setActiveLink("all");
+      setFilteredMenu(menu);
     } else {
       const newMenu = menu.filter((el) => el.category.name === category);
       setFilteredMenu(newMenu);
