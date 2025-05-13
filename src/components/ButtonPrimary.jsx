@@ -13,6 +13,7 @@ const ButtonPrimary = (props) => {
         w="200px"
         display={{ base: "none", lg: "block" }}
         bgGradient="linear(to-r, #A46E50, #C19372)"
+        data-test-id="button-primary"
       >
         <Link
           to="/reservation"

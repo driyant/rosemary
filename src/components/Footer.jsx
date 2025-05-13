@@ -90,6 +90,7 @@ const Footer = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        data-testid="footer"
       >
         <Container color="#FFFFFF" maxWidth={{ md: "88%", lg: "90%" }}>
           <Box
@@ -111,6 +112,7 @@ const Footer = () => {
                 color="#CD916D"
                 fontFamily={"Bebas Neue"}
                 fontSize="1.2rem"
+                data-testid="text-save-deals"
               >
                 save 20% in deals
               </Text>
@@ -120,6 +122,7 @@ const Footer = () => {
                 fontFamily={"Libre Baskerville"}
                 fontWeight="500"
                 fontSize={{ base: "1.5rem", md: "1.7rem" }}
+                data-testid="text-our-weekly-newsletter"
               >
                 Our Weekly Newsletter
               </Heading>
@@ -152,6 +155,7 @@ const Footer = () => {
                 isRequiredisplay={true}
                 onChange={(e) => setNewsletterInput(e.target.value)}
                 value={newsletterInput}
+                data-testid="newsletter-input"
               />
               <Box
                 backgroundColor="#F2F2F2"
@@ -164,6 +168,7 @@ const Footer = () => {
                   // isDisabledisplay={progessIsShow ? true : false}
                   onClick={newsletterSubmitHandler}
                   borderRadius="0"
+                  data-testid="newsletter-button"
                   style={{
                     border: "2px solid #D3D0CE",
                     width: "100%",
@@ -178,9 +183,9 @@ const Footer = () => {
                   }}
                 >
                   {isLoading ? (
-                    <Spinner color="black" />
+                    <Spinner color="black" role="spinner" />
                   ) : (
-                    <BsArrowRight size={22} color="black" />
+                    <BsArrowRight size={22} color="black" role="arrow-right" />
                   )}
                 </Button>
               </Box>
@@ -205,6 +210,7 @@ const Footer = () => {
                 listStyleType="none"
                 ml="0"
                 fontFamily={"Libre Baskerville"}
+                data-testid="footer-more-list"
               >
                 <ListItem my="1rem">Our blog</ListItem>
                 <ListItem my="1rem">Contact us</ListItem>
@@ -225,6 +231,7 @@ const Footer = () => {
                 listStyleType="none"
                 ml="0"
                 fontFamily={"Libre Baskerville"}
+                data-testid="footer-contact-list"
               >
                 <ListItem my="1rem">+00 1111 2222</ListItem>
                 <ListItem my="1rem">contact@rosemary.com</ListItem>
@@ -244,6 +251,7 @@ const Footer = () => {
                 listStyleType="none"
                 ml="0"
                 fontFamily={"Libre Baskerville"}
+                data-testid="footer-follow-list"
               >
                 <ListItem my="1rem">2021 &copy; Rosemary</ListItem>
                 <ListItem my="1rem">Design Inspired by Sicily</ListItem>
@@ -303,8 +311,14 @@ const Footer = () => {
             alignItems="center"
             w="100%"
             mt="1rem"
+            data-testid="footer-logo"
           >
-            <Text fontFamily={"Libre Baskerville"} fontSize="2rem" mb="1.5rem">
+            <Text
+              fontFamily={"Libre Baskerville"}
+              fontSize="2rem"
+              mb="1.5rem"
+              data-testid="footer-logo-text"
+            >
               Rosemary
             </Text>
           </Box>

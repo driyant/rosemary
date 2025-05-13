@@ -24,6 +24,8 @@ build
 *.sln
 *.sw?
 
+coverage
+
 .env
 
 repomix-output.xml

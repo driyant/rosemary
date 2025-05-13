@@ -1,0 +1,1166 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Homepage > should have a title 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    class="chakra-ui-light"
+  >
+    <div>
+      <header
+        class="css-jel8qa"
+      >
+        <nav
+          class="css-170xtkb"
+        >
+          <div
+            class="css-1vd84sn"
+          >
+            <a
+              data-discover="true"
+              href="/"
+              style="display: flex; flex-direction: row; justify-content: center; align-items: center;"
+            >
+              <img
+                alt="Rosemary"
+                class="chakra-image css-0"
+                src="/src/assets/rosemary-white.png"
+              />
+              <h2
+                class="chakra-heading css-syc8zr"
+              >
+                Rosemary
+              </h2>
+            </a>
+          </div>
+          <ul
+            class="css-1cdu1qg"
+            role="list"
+          >
+            <li
+              class="css-12ilqy0"
+            >
+              <a
+                data-discover="true"
+                href="/discover"
+              >
+                discover
+              </a>
+            </li>
+            <li
+              class="css-jhw8gs"
+            >
+              <a
+                data-discover="true"
+                href="/menu"
+              >
+                our menu
+              </a>
+            </li>
+            <li
+              class="css-1bq0qv0"
+            >
+              <a
+                data-discover="true"
+                href="/contact"
+              >
+                contact
+              </a>
+            </li>
+            <li
+              class="css-o5ifuc"
+            >
+              <a
+                data-discover="true"
+                href="/reservation"
+              >
+                book reservation
+              </a>
+            </li>
+          </ul>
+          <div
+            class="css-ilsd6k"
+          >
+            <p
+              class="chakra-text css-gd4xud"
+              style="font-family: var(--Bebas-Neue);"
+            >
+              menu
+            </p>
+            <div
+              class="css-10sn32b"
+            >
+              <div
+                class="css-yj8izj"
+              />
+              <div
+                class="css-yj8izj"
+              />
+            </div>
+          </div>
+          <button
+            class="css-17uc8dx"
+            data-test-id="button-primary"
+          >
+            <a
+              data-discover="true"
+              href="/reservation"
+              style="border: 2px solid rgba(241, 241, 241, 0.8); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: var(--Bebas-Neue); letter-spacing: 2px; font-weight: 500; color: rgb(255, 255, 255);"
+            >
+              book table
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </nav>
+        <div
+          class="css-1a1q7pa"
+        >
+          <h2
+            class="chakra-heading css-rfio6m"
+            data-testid="homepage-heading"
+            style="opacity: 0;"
+          >
+            rosemary restaurant
+          </h2>
+          <p
+            class="chakra-text css-1u8c1ov"
+            data-testid="homepage-qoutes"
+            style="opacity: 0;"
+          >
+            "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food"
+          </p>
+          <button
+            class="css-14dv1wk"
+            data-test-id="button-secondary"
+            style="opacity: 0;"
+          >
+            <a
+              data-discover="true"
+              href="/menu"
+              style="border: 2px solid grey; width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: 'Bebas Neue'; letter-spacing: 2px; font-weight: 500;"
+            >
+              check the menu
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </div>
+      </header>
+      <span
+        hidden=""
+        id="__chakra_env"
+      />
+    </div>
+    <div
+      class="chakra-portal"
+    >
+      <div
+        aria-label="Notifications-top"
+        aria-live="polite"
+        id="chakra-toast-manager-top"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-top-left"
+        aria-live="polite"
+        id="chakra-toast-manager-top-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-top-right"
+        aria-live="polite"
+        id="chakra-toast-manager-top-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom-left"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-bottom-right"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <header
+      class="css-jel8qa"
+    >
+      <nav
+        class="css-170xtkb"
+      >
+        <div
+          class="css-1vd84sn"
+        >
+          <a
+            data-discover="true"
+            href="/"
+            style="display: flex; flex-direction: row; justify-content: center; align-items: center;"
+          >
+            <img
+              alt="Rosemary"
+              class="chakra-image css-0"
+              src="/src/assets/rosemary-white.png"
+            />
+            <h2
+              class="chakra-heading css-syc8zr"
+            >
+              Rosemary
+            </h2>
+          </a>
+        </div>
+        <ul
+          class="css-1cdu1qg"
+          role="list"
+        >
+          <li
+            class="css-12ilqy0"
+          >
+            <a
+              data-discover="true"
+              href="/discover"
+            >
+              discover
+            </a>
+          </li>
+          <li
+            class="css-jhw8gs"
+          >
+            <a
+              data-discover="true"
+              href="/menu"
+            >
+              our menu
+            </a>
+          </li>
+          <li
+            class="css-1bq0qv0"
+          >
+            <a
+              data-discover="true"
+              href="/contact"
+            >
+              contact
+            </a>
+          </li>
+          <li
+            class="css-o5ifuc"
+          >
+            <a
+              data-discover="true"
+              href="/reservation"
+            >
+              book reservation
+            </a>
+          </li>
+        </ul>
+        <div
+          class="css-ilsd6k"
+        >
+          <p
+            class="chakra-text css-gd4xud"
+            style="font-family: var(--Bebas-Neue);"
+          >
+            menu
+          </p>
+          <div
+            class="css-10sn32b"
+          >
+            <div
+              class="css-yj8izj"
+            />
+            <div
+              class="css-yj8izj"
+            />
+          </div>
+        </div>
+        <button
+          class="css-17uc8dx"
+          data-test-id="button-primary"
+        >
+          <a
+            data-discover="true"
+            href="/reservation"
+            style="border: 2px solid rgba(241, 241, 241, 0.8); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: var(--Bebas-Neue); letter-spacing: 2px; font-weight: 500; color: rgb(255, 255, 255);"
+          >
+            book table
+            <svg
+              fill="currentColor"
+              height="22"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </button>
+      </nav>
+      <div
+        class="css-1a1q7pa"
+      >
+        <h2
+          class="chakra-heading css-rfio6m"
+          data-testid="homepage-heading"
+          style="opacity: 0;"
+        >
+          rosemary restaurant
+        </h2>
+        <p
+          class="chakra-text css-1u8c1ov"
+          data-testid="homepage-qoutes"
+          style="opacity: 0;"
+        >
+          "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food"
+        </p>
+        <button
+          class="css-14dv1wk"
+          data-test-id="button-secondary"
+          style="opacity: 0;"
+        >
+          <a
+            data-discover="true"
+            href="/menu"
+            style="border: 2px solid grey; width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: 'Bebas Neue'; letter-spacing: 2px; font-weight: 500;"
+          >
+            check the menu
+            <svg
+              fill="currentColor"
+              height="22"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </button>
+      </div>
+    </header>
+    <span
+      hidden=""
+      id="__chakra_env"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Homepage > should render the homepage 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    class="chakra-ui-light"
+  >
+    <div>
+      <header
+        class="css-jel8qa"
+      >
+        <nav
+          class="css-170xtkb"
+        >
+          <div
+            class="css-1vd84sn"
+          >
+            <a
+              data-discover="true"
+              href="/"
+              style="display: flex; flex-direction: row; justify-content: center; align-items: center;"
+            >
+              <img
+                alt="Rosemary"
+                class="chakra-image css-0"
+                src="/src/assets/rosemary-white.png"
+              />
+              <h2
+                class="chakra-heading css-syc8zr"
+              >
+                Rosemary
+              </h2>
+            </a>
+          </div>
+          <ul
+            class="css-1cdu1qg"
+            role="list"
+          >
+            <li
+              class="css-12ilqy0"
+            >
+              <a
+                data-discover="true"
+                href="/discover"
+              >
+                discover
+              </a>
+            </li>
+            <li
+              class="css-jhw8gs"
+            >
+              <a
+                data-discover="true"
+                href="/menu"
+              >
+                our menu
+              </a>
+            </li>
+            <li
+              class="css-1bq0qv0"
+            >
+              <a
+                data-discover="true"
+                href="/contact"
+              >
+                contact
+              </a>
+            </li>
+            <li
+              class="css-o5ifuc"
+            >
+              <a
+                data-discover="true"
+                href="/reservation"
+              >
+                book reservation
+              </a>
+            </li>
+          </ul>
+          <div
+            class="css-ilsd6k"
+          >
+            <p
+              class="chakra-text css-gd4xud"
+              style="font-family: var(--Bebas-Neue);"
+            >
+              menu
+            </p>
+            <div
+              class="css-10sn32b"
+            >
+              <div
+                class="css-yj8izj"
+              />
+              <div
+                class="css-yj8izj"
+              />
+            </div>
+          </div>
+          <button
+            class="css-17uc8dx"
+            data-test-id="button-primary"
+          >
+            <a
+              data-discover="true"
+              href="/reservation"
+              style="border: 2px solid rgba(241, 241, 241, 0.8); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: var(--Bebas-Neue); letter-spacing: 2px; font-weight: 500; color: rgb(255, 255, 255);"
+            >
+              book table
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </nav>
+        <div
+          class="css-1a1q7pa"
+        >
+          <h2
+            class="chakra-heading css-rfio6m"
+            data-testid="homepage-heading"
+            style="opacity: 0;"
+          >
+            rosemary restaurant
+          </h2>
+          <p
+            class="chakra-text css-1u8c1ov"
+            data-testid="homepage-qoutes"
+            style="opacity: 0;"
+          >
+            "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food"
+          </p>
+          <button
+            class="css-14dv1wk"
+            data-test-id="button-secondary"
+            style="opacity: 0;"
+          >
+            <a
+              data-discover="true"
+              href="/menu"
+              style="border: 2px solid grey; width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: 'Bebas Neue'; letter-spacing: 2px; font-weight: 500;"
+            >
+              check the menu
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </div>
+      </header>
+      <span
+        hidden=""
+        id="__chakra_env"
+      />
+    </div>
+    <div
+      class="chakra-portal"
+    >
+      <div
+        aria-label="Notifications-top"
+        aria-live="polite"
+        id="chakra-toast-manager-top"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-top-left"
+        aria-live="polite"
+        id="chakra-toast-manager-top-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-top-right"
+        aria-live="polite"
+        id="chakra-toast-manager-top-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom-left"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-bottom-right"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+    </div>
+    <div>
+      <header
+        class="css-jel8qa"
+      >
+        <nav
+          class="css-170xtkb"
+        >
+          <div
+            class="css-1vd84sn"
+          >
+            <a
+              data-discover="true"
+              href="/"
+              style="display: flex; flex-direction: row; justify-content: center; align-items: center;"
+            >
+              <img
+                alt="Rosemary"
+                class="chakra-image css-0"
+                src="/src/assets/rosemary-white.png"
+              />
+              <h2
+                class="chakra-heading css-syc8zr"
+              >
+                Rosemary
+              </h2>
+            </a>
+          </div>
+          <ul
+            class="css-1cdu1qg"
+            role="list"
+          >
+            <li
+              class="css-12ilqy0"
+            >
+              <a
+                data-discover="true"
+                href="/discover"
+              >
+                discover
+              </a>
+            </li>
+            <li
+              class="css-jhw8gs"
+            >
+              <a
+                data-discover="true"
+                href="/menu"
+              >
+                our menu
+              </a>
+            </li>
+            <li
+              class="css-1bq0qv0"
+            >
+              <a
+                data-discover="true"
+                href="/contact"
+              >
+                contact
+              </a>
+            </li>
+            <li
+              class="css-o5ifuc"
+            >
+              <a
+                data-discover="true"
+                href="/reservation"
+              >
+                book reservation
+              </a>
+            </li>
+          </ul>
+          <div
+            class="css-ilsd6k"
+          >
+            <p
+              class="chakra-text css-gd4xud"
+              style="font-family: var(--Bebas-Neue);"
+            >
+              menu
+            </p>
+            <div
+              class="css-10sn32b"
+            >
+              <div
+                class="css-yj8izj"
+              />
+              <div
+                class="css-yj8izj"
+              />
+            </div>
+          </div>
+          <button
+            class="css-17uc8dx"
+            data-test-id="button-primary"
+          >
+            <a
+              data-discover="true"
+              href="/reservation"
+              style="border: 2px solid rgba(241, 241, 241, 0.8); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: var(--Bebas-Neue); letter-spacing: 2px; font-weight: 500; color: rgb(255, 255, 255);"
+            >
+              book table
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </nav>
+        <div
+          class="css-1a1q7pa"
+        >
+          <h2
+            class="chakra-heading css-rfio6m"
+            data-testid="homepage-heading"
+            style="opacity: 0;"
+          >
+            rosemary restaurant
+          </h2>
+          <p
+            class="chakra-text css-1u8c1ov"
+            data-testid="homepage-qoutes"
+            style="opacity: 0;"
+          >
+            "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food"
+          </p>
+          <button
+            class="css-14dv1wk"
+            data-test-id="button-secondary"
+            style="opacity: 0;"
+          >
+            <a
+              data-discover="true"
+              href="/menu"
+              style="border: 2px solid grey; width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: 'Bebas Neue'; letter-spacing: 2px; font-weight: 500;"
+            >
+              check the menu
+              <svg
+                fill="currentColor"
+                height="22"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                width="22"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </button>
+        </div>
+      </header>
+      <span
+        hidden=""
+        id="__chakra_env"
+      />
+    </div>
+    <div
+      class="chakra-portal"
+    >
+      <div
+        aria-label="Notifications-top"
+        aria-live="polite"
+        id="chakra-toast-manager-top"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-top-left"
+        aria-live="polite"
+        id="chakra-toast-manager-top-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-top-right"
+        aria-live="polite"
+        id="chakra-toast-manager-top-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom-left"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-left"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+      <div
+        aria-label="Notifications-bottom"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column; margin: 0px auto;"
+      />
+      <div
+        aria-label="Notifications-bottom-right"
+        aria-live="polite"
+        id="chakra-toast-manager-bottom-right"
+        role="region"
+        style="position: fixed; z-index: var(--toast-z-index, 5500); pointer-events: none; display: flex; flex-direction: column;"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <header
+      class="css-jel8qa"
+    >
+      <nav
+        class="css-170xtkb"
+      >
+        <div
+          class="css-1vd84sn"
+        >
+          <a
+            data-discover="true"
+            href="/"
+            style="display: flex; flex-direction: row; justify-content: center; align-items: center;"
+          >
+            <img
+              alt="Rosemary"
+              class="chakra-image css-0"
+              src="/src/assets/rosemary-white.png"
+            />
+            <h2
+              class="chakra-heading css-syc8zr"
+            >
+              Rosemary
+            </h2>
+          </a>
+        </div>
+        <ul
+          class="css-1cdu1qg"
+          role="list"
+        >
+          <li
+            class="css-12ilqy0"
+          >
+            <a
+              data-discover="true"
+              href="/discover"
+            >
+              discover
+            </a>
+          </li>
+          <li
+            class="css-jhw8gs"
+          >
+            <a
+              data-discover="true"
+              href="/menu"
+            >
+              our menu
+            </a>
+          </li>
+          <li
+            class="css-1bq0qv0"
+          >
+            <a
+              data-discover="true"
+              href="/contact"
+            >
+              contact
+            </a>
+          </li>
+          <li
+            class="css-o5ifuc"
+          >
+            <a
+              data-discover="true"
+              href="/reservation"
+            >
+              book reservation
+            </a>
+          </li>
+        </ul>
+        <div
+          class="css-ilsd6k"
+        >
+          <p
+            class="chakra-text css-gd4xud"
+            style="font-family: var(--Bebas-Neue);"
+          >
+            menu
+          </p>
+          <div
+            class="css-10sn32b"
+          >
+            <div
+              class="css-yj8izj"
+            />
+            <div
+              class="css-yj8izj"
+            />
+          </div>
+        </div>
+        <button
+          class="css-17uc8dx"
+          data-test-id="button-primary"
+        >
+          <a
+            data-discover="true"
+            href="/reservation"
+            style="border: 2px solid rgba(241, 241, 241, 0.8); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: var(--Bebas-Neue); letter-spacing: 2px; font-weight: 500; color: rgb(255, 255, 255);"
+          >
+            book table
+            <svg
+              fill="currentColor"
+              height="22"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </button>
+      </nav>
+      <div
+        class="css-1a1q7pa"
+      >
+        <h2
+          class="chakra-heading css-rfio6m"
+          data-testid="homepage-heading"
+          style="opacity: 0;"
+        >
+          rosemary restaurant
+        </h2>
+        <p
+          class="chakra-text css-1u8c1ov"
+          data-testid="homepage-qoutes"
+          style="opacity: 0;"
+        >
+          "A good restaurant is like a vacation; it transports you, and it becomes a lot more than just about the food"
+        </p>
+        <button
+          class="css-14dv1wk"
+          data-test-id="button-secondary"
+          style="opacity: 0;"
+        >
+          <a
+            data-discover="true"
+            href="/menu"
+            style="border: 2px solid grey; width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: 'Bebas Neue'; letter-spacing: 2px; font-weight: 500;"
+          >
+            check the menu
+            <svg
+              fill="currentColor"
+              height="22"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </button>
+      </div>
+    </header>
+    <span
+      hidden=""
+      id="__chakra_env"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Homepage > should render the homepage and match snapshot 1`] = `
+{
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "logTestingPlaygroundURL": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+}
+`;

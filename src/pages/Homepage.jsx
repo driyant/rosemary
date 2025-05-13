@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Image,
@@ -15,9 +14,9 @@ import bgImage from "@/assets/resort.jpg";
 import rosemaryWhite from "@/assets/rosemary-white.png";
 import { motion } from "framer-motion";
 
-const MotionText = motion(Text);
-const MotionButtonSecondary = motion(ButtonSecondary);
-const MotionHeading = motion(Heading);
+const MotionText = motion.create(Text);
+const MotionButtonSecondary = motion.create(ButtonSecondary);
+const MotionHeading = motion.create(Heading);
 
 const Homepage = () => {
   const [isOpen, setIsOpen] = useBoolean();
@@ -242,6 +241,7 @@ const Homepage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
+            data-testid="homepage-heading"
           >
             rosemary restaurant
           </MotionHeading>
@@ -253,6 +253,7 @@ const Homepage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
+            data-testid="homepage-qoutes"
           >
             "A good restaurant is like a vacation; it transports you, and it
             becomes a lot more than just about the food"

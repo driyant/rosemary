@@ -24,6 +24,7 @@ const Menu = ({ menus }) => {
                 display="flex"
                 flexFlow="column nowrap"
                 borderBottom="1.5px solid rgba(161, 161, 161, 0.8)"
+                data-testid={`menu-${menu.id}`}
               >
                 <Box
                   display="flex"

@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Heading, Text, Image } from "@chakra-ui/react";
 import steak from "@/assets/steak.jpg";
 import restaurantChef from "@/assets/restaurant_chef.jpg";
@@ -74,6 +75,7 @@ const Discover = () => {
             fontWeight="500"
             textTransform="uppercase"
             fontFamily={"Bebas Neue"}
+            data-testid="discover-heading"
           >
             rosemary restaurant
           </Heading>
@@ -82,11 +84,16 @@ const Discover = () => {
             color="#000000"
             fontSize={{ base: "1.5rem" }}
             my="1rem"
+            data-testid="discover-subheading"
           >
-            "A good restaurant is like a vacation; it transports you, and it
-            becomes a lot more than just about the food"
+            &quot;A good restaurant is like a vacation; it transports you, and
+            it becomes a lot more than just about the food&quot;
           </Text>
-          <Text fontFamily={"Libre Baskerville"} mb="1rem">
+          <Text
+            fontFamily={"Libre Baskerville"}
+            mb="1rem"
+            data-testid="discover-description"
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

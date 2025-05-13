@@ -10,6 +10,7 @@ const Category = ({ categories, filterCategories, activeLink }) => {
           fontFamily={"Bebas Neue"}
           fontSize="1.2rem"
           letterSpacing="2px"
+          data-testid="no-categories"
         >
           No categories available
         </Text>
@@ -31,6 +32,7 @@ const Category = ({ categories, filterCategories, activeLink }) => {
               color: "#CD916D",
               transition: "0.5s ease",
             }}
+            data-testid={`category-${index}`}
             onClick={() => filterCategories(category)}
           >
             {category}

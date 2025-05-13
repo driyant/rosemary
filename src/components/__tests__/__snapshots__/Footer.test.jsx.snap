@@ -1,0 +1,243 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > should match snapshot 1`] = `
+<footer
+  class="css-1a9oufo"
+  data-testid="footer"
+>
+  <div
+    class="chakra-container css-1okfgs8"
+  >
+    <div
+      class="css-1hl18y5"
+    >
+      <div
+        class="css-9sd10m"
+      >
+        <p
+          class="chakra-text css-uof83v"
+          data-testid="text-save-deals"
+        >
+          save 20% in deals
+        </p>
+        <h3
+          class="chakra-heading css-1o57r62"
+          data-testid="text-our-weekly-newsletter"
+        >
+          Our Weekly Newsletter
+        </h3>
+      </div>
+      <div
+        class="css-fotp6l"
+      >
+        <input
+          class="chakra-input css-w8nzr3"
+          data-testid="newsletter-input"
+          placeholder="TYPE YOUR EMAIL"
+          type="email"
+          value=""
+        />
+        <div
+          class="css-16iwtse"
+        >
+          <button
+            class="chakra-button css-1mv1dg3"
+            data-testid="newsletter-button"
+            style="border: 2px solid rgb(211, 208, 206); width: 100%; height: 100%; display: flex; justify-content: space-evenly; align-items: center; flex-flow: row nowrap; font-family: "Bebas Neue"; letter-spacing: 2px; font-weight: 500;"
+            type="button"
+          >
+            <svg
+              color="black"
+              fill="currentColor"
+              height="22"
+              role="arrow-right"
+              stroke="currentColor"
+              stroke-width="0"
+              style="color: black;"
+              viewBox="0 0 16 16"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-pz53x7"
+    >
+      <div
+        class="css-0"
+      >
+        <p
+          class="chakra-text css-w9n3d1"
+        >
+          MORE
+        </p>
+        <ul
+          class="css-v711tl"
+          data-testid="footer-more-list"
+          role="list"
+        >
+          <li
+            class="css-17t5ffy"
+          >
+            Our blog
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            Contact us
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            Delivery service
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            Terms of use
+          </li>
+        </ul>
+      </div>
+      <div
+        class="css-0"
+      >
+        <p
+          class="chakra-text css-w9n3d1"
+        >
+          CONTACT US
+        </p>
+        <ul
+          class="css-v711tl"
+          data-testid="footer-contact-list"
+          role="list"
+        >
+          <li
+            class="css-17t5ffy"
+          >
+            +00 1111 2222
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            contact@rosemary.com
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            1408, Nordic Island, Antartica
+          </li>
+        </ul>
+      </div>
+      <div
+        class="css-0"
+      >
+        <p
+          class="chakra-text css-w9n3d1"
+        >
+          FOLLOW US
+        </p>
+        <ul
+          class="css-v711tl"
+          data-testid="footer-follow-list"
+          role="list"
+        >
+          <li
+            class="css-17t5ffy"
+          >
+            2021 © Rosemary
+          </li>
+          <li
+            class="css-17t5ffy"
+          >
+            Design Inspired by Sicily
+          </li>
+          <ul
+            class="css-rsalwz"
+            role="list"
+          >
+            <li
+              class="css-2nknzu"
+            >
+              <svg
+                color="black"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-width="0"
+                style="color: black;"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </li>
+            <li
+              class="css-1c4d68n"
+            >
+              <svg
+                color="black"
+                fill="currentColor"
+                height="16"
+                stroke="currentColor"
+                stroke-width="0"
+                style="color: black;"
+                viewBox="0 0 448 512"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"
+                />
+              </svg>
+            </li>
+            <li
+              class="css-2nknzu"
+            >
+              <svg
+                color="black"
+                fill="currentColor"
+                height="20"
+                stroke="currentColor"
+                stroke-width="0"
+                style="color: black;"
+                viewBox="0 0 512 512"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M336 96c21.2 0 41.3 8.4 56.5 23.5S416 154.8 416 176v160c0 21.2-8.4 41.3-23.5 56.5S357.2 416 336 416H176c-21.2 0-41.3-8.4-56.5-23.5S96 357.2 96 336V176c0-21.2 8.4-41.3 23.5-56.5S154.8 96 176 96h160m0-32H176c-61.6 0-112 50.4-112 112v160c0 61.6 50.4 112 112 112h160c61.6 0 112-50.4 112-112V176c0-61.6-50.4-112-112-112z"
+                />
+                <path
+                  d="M360 176c-13.3 0-24-10.7-24-24s10.7-24 24-24c13.2 0 24 10.7 24 24s-10.8 24-24 24zM256 192c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64m0-32c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96z"
+                />
+              </svg>
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="css-1529zw6"
+      data-testid="footer-logo"
+    >
+      <p
+        class="chakra-text css-1qh6ko2"
+        data-testid="footer-logo-text"
+      >
+        Rosemary
+      </p>
+    </div>
+  </div>
+</footer>
+`;
