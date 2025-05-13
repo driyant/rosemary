@@ -14,9 +14,9 @@ const Category = ({ categories, filterCategories, activeLink }) => {
           No categories available
         </Text>
       ) : (
-        categories?.map((category) => (
+        categories?.map((category, index) => (
           <Box
-            key={category.id}
+            key={index}
             textAlign="center"
             h="40px"
             display="flex"
