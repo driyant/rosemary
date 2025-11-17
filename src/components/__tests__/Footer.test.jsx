@@ -172,7 +172,6 @@ describe("Footer", () => {
     const inputElement = screen.getByTestId("newsletter-input");
     const buttonElement = screen.getByTestId("newsletter-button");
 
-    // Buat promise yang tidak langsung resolve untuk mensimulasikan loading
     let resolveFetch;
     const mockFetchPromise = new Promise((resolve) => {
       resolveFetch = resolve;
