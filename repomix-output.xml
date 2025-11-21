@@ -1,0 +1,1581 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.github/
+  workflows/
+    Deploy.yml
+public/
+  vite.svg
+src/
+  assets/
+    beach_resort.jpg
+    chef.jpg
+    menu_plating.jpg
+    nature.jpg
+    resort.jpg
+    restaurant_chef.jpg
+    restaurant-1.jpg
+    resto-dining.jpg
+    rosemary-white.png
+    rosemary.png
+    steak.jpg
+  components/
+    ButtonPrimary.tsx
+    ButtonSecondary.tsx
+    Footer.tsx
+    Nav.tsx
+    RootLayout.tsx
+  pages/
+    Homepage.tsx
+  router/
+    index.tsx
+  utils/
+    interface/
+      IValidate.tsx
+    constants.tsx
+  App.tsx
+  main.tsx
+  theme.tsx
+.gitignore
+.prettierrc
+eslint.config.js
+index.html
+package.json
+README.md
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/components/ButtonPrimary.tsx">
+import { Box } from "@chakra-ui/react";
+import { Link } from "react-router";
+import { BsArrowRight } from "react-icons/bs";
+
+const ButtonPrimary: React.FC = (props: any) => {
+  return (
+    <>
+      <Box
+        as="button"
+        h="60px"
+        p="5px"
+        textTransform="uppercase"
+        w="200px"
+        display={{ base: "none", lg: "block" }}
+        bgGradient="linear(to-r, #A46E50, #C19372)"
+      >
+        <Link
+          to="/reservation"
+          style={{
+            border: "2px solid rgba(241, 241, 241, 0.8)",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexFlow: "row nowrap",
+            fontFamily: "var(--Bebas-Neue)",
+            letterSpacing: "2px",
+            fontWeight: "500",
+            color: "#FFFFFF",
+          }}
+        >
+          {props.children}
+          <BsArrowRight size={22} />
+        </Link>
+      </Box>
+    </>
+  );
+};
+
+export default ButtonPrimary;
+</file>
+
+<file path="src/components/ButtonSecondary.tsx">
+import { Box } from "@chakra-ui/react";
+import { Link } from "react-router";
+import { BsArrowRight } from "react-icons/bs";
+import { motion } from "framer-motion";
+
+const MotionButtonSecondary = motion(Box);
+
+const ButtonSecondary: React.FC = (props: any) => {
+  return (
+    <>
+      <MotionButtonSecondary
+        as="button"
+        backgroundColor="rgba(233, 233, 233, 0.8)"
+        h="60px"
+        p="5px"
+        textTransform="uppercase"
+        w="200px"
+        marginBottom={props.marginBottom}
+        marginTop={props.marginTop}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <Link
+          to="/menu"
+          style={{
+            border: "2px solid grey",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexFlow: "row nowrap",
+            fontFamily: "'Bebas Neue'",
+            letterSpacing: "2px",
+            fontWeight: "500",
+          }}
+        >
+          {props.children}
+          <BsArrowRight size={22} />
+        </Link>
+      </MotionButtonSecondary>
+    </>
+  );
+};
+
+export default ButtonSecondary;
+</file>
+
+<file path="src/components/Footer.tsx">
+import { useState } from "react";
+import {
+  Box,
+  Heading,
+  Text,
+  Input,
+  Container,
+  Button,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
+import { BsArrowRight } from "react-icons/bs";
+import { CgFacebook } from "react-icons/cg";
+import { IoLogoInstagram } from "react-icons/io";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { useToast, Spinner } from "@chakra-ui/react";
+import { submitSubscriptionUrl } from "@/utils/constants";
+
+const Footer = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [newsletterInput, setNewsletterInput] = useState("");
+  const toast = useToast();
+
+  const showToast = (title: string, description: string, status: string) => {
+    toast({
+      title: title,
+      description: description,
+      status: status,
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+  const newsletterInputIsValid =
+    newsletterInput.trim() !== "" && newsletterInput.includes("@");
+
+  const sendNewsletter = async (newslettersData: any) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${submitSubscriptionUrl}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newslettersData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return { success: true, data };
+    } catch (error) {
+      console.error("Failed to send newsletter:", error);
+      return { success: false, error: error?.message as any };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const newsletterSubmitHandler = async () => {
+    if (!newsletterInputIsValid) {
+      showToast(
+        "BAD REQUEST!",
+        "Sorry cannot process, email should not be empty!",
+        "error"
+      );
+      return;
+    }
+    const newslettersData = {
+      email: newsletterInput,
+    };
+    const result = await sendNewsletter(newslettersData);
+    if (result.success) {
+      showToast(
+        "Success!",
+        `Hi ${newslettersData.email} you have been subscribed successfully!`,
+        "success"
+      );
+      setNewsletterInput("");
+    } else {
+      showToast("Error!", `${result.error}`, "error");
+    }
+  };
+
+  return (
+    <>
+      <Box
+        as="footer"
+        bgColor="#222222"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Container color="#FFFFFF" maxWidth={{ md: "88%", lg: "90%" }}>
+          <Box
+            display="flex"
+            flexFlow={{ base: "column", lg: "row" }}
+            borderBottom="1.5px solid #333333"
+            py={{ lg: "2rem" }}
+            mt={{ md: "1.5rem" }}
+          >
+            <Box
+              w={{ base: "100%", lg: "49%" }}
+              marginTop="2.5rem"
+              py={{ lg: "1rem" }}
+              px={{ lg: "0.5rem" }}
+            >
+              <Text
+                letterSpacing="2px"
+                textTransform="uppercase"
+                color="#CD916D"
+                fontFamily={"Bebas Neue"}
+                fontSize="1.2rem"
+              >
+                save 20% in deals
+              </Text>
+              <Heading
+                mt="1rem"
+                as="h3"
+                fontFamily={"Libre Baskerville"}
+                fontWeight="500"
+                fontSize={{ base: "1.5rem", md: "1.7rem" }}
+              >
+                Our Weekly Newsletter
+              </Heading>
+            </Box>
+            <Box
+              mt="4rem"
+              display="flex"
+              flexFlow="row nowrap"
+              justifyContent="space-between"
+              mb="4rem"
+              w={{ lg: "50%" }}
+              pt={{ md: "1rem" }}
+            >
+              <Input
+                // className={styles.newsletter}
+                w={{ base: "70%", md: "75%", lg: "80%" }}
+                borderRadius="0px"
+                h="50px"
+                type="email"
+                placeholder="TYPE YOUR EMAIL"
+                textTransform="uppercase"
+                borderTop="none"
+                borderLeft="none"
+                borderRight="none"
+                borderBottom="1px solid #F2F2F2"
+                fontFamily={"Bebas Neue"}
+                letterSpacing="2px"
+                variant="flushed"
+                color="#FFFFFF"
+                // @ts-ignore
+                isRequiredisplay={true}
+                onChange={(e) => setNewsletterInput(e.target.value)}
+                value={newsletterInput}
+              />
+              <Box
+                backgroundColor="#F2F2F2"
+                h="50px"
+                p="5px"
+                textTransform="uppercase"
+                w={{ md: "15%", lg: "10%" }}
+              >
+                <Button
+                  // isDisabledisplay={progessIsShow ? true : false}
+                  onClick={newsletterSubmitHandler}
+                  borderRadius="0"
+                  style={{
+                    border: "2px solid #D3D0CE",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                    flexFlow: "row nowrap",
+                    fontFamily: '"Bebas Neue"',
+                    letterSpacing: "2px",
+                    fontWeight: "500",
+                  }}
+                >
+                  {isLoading ? (
+                    <Spinner color="black" />
+                  ) : (
+                    <BsArrowRight size={22} color="black" />
+                  )}
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            mt="2rem"
+            display="grid"
+            gridTemplateColumns={{ base: "1fr 1fr", lg: "1fr 1fr 1fr" }}
+            gridTemplateRows="auto auto auto"
+          >
+            <Box>
+              <Text
+                color="#CD916D"
+                fontFamily={"Bebas Neue"}
+                letterSpacing="1px"
+                fontSize="1.2rem"
+              >
+                MORE
+              </Text>
+              <UnorderedList
+                listStyleType="none"
+                ml="0"
+                fontFamily={"Libre Baskerville"}
+              >
+                <ListItem my="1rem">Our blog</ListItem>
+                <ListItem my="1rem">Contact us</ListItem>
+                <ListItem my="1rem">Delivery service</ListItem>
+                <ListItem my="1rem">Terms of use</ListItem>
+              </UnorderedList>
+            </Box>
+            <Box>
+              <Text
+                color="#CD916D"
+                fontFamily={"Bebas Neue"}
+                letterSpacing="1px"
+                fontSize="1.2rem"
+              >
+                CONTACT US
+              </Text>
+              <UnorderedList
+                listStyleType="none"
+                ml="0"
+                fontFamily={"Libre Baskerville"}
+              >
+                <ListItem my="1rem">+00 1111 2222</ListItem>
+                <ListItem my="1rem">contact@rosemary.com</ListItem>
+                <ListItem my="1rem">1408, Nordic Island, Antartica</ListItem>
+              </UnorderedList>
+            </Box>
+            <Box>
+              <Text
+                color="#CD916D"
+                fontFamily={"Bebas Neue"}
+                letterSpacing="1px"
+                fontSize="1.2rem"
+              >
+                FOLLOW US
+              </Text>
+              <UnorderedList
+                listStyleType="none"
+                ml="0"
+                fontFamily={"Libre Baskerville"}
+              >
+                <ListItem my="1rem">2021 &copy; Rosemary</ListItem>
+                <ListItem my="1rem">Design Inspired by Sicily</ListItem>
+                <UnorderedList
+                  my="1rem"
+                  display="inline-flex"
+                  listStyleType="none"
+                  ml="0"
+                >
+                  <ListItem
+                    border="1px solid white"
+                    h="35px"
+                    w="35px"
+                    bgColor="#F2F2F2"
+                    borderRadius="50%"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                  >
+                    <CgFacebook color="black" size={18} />
+                  </ListItem>
+                  <ListItem
+                    border="1px solid white"
+                    h="35px"
+                    w="35px"
+                    bgColor="#F2F2F2"
+                    borderRadius="50%"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                    mx="1rem"
+                  >
+                    <FaSquareXTwitter color="black" size={16} />
+                  </ListItem>
+                  <ListItem
+                    border="1px solid white"
+                    h="35px"
+                    w="35px"
+                    bgColor="#F2F2F2"
+                    borderRadius="50%"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                  >
+                    <IoLogoInstagram color="black" size={20} />
+                  </ListItem>
+                </UnorderedList>
+              </UnorderedList>
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            w="100%"
+            mt="1rem"
+          >
+            <Text fontFamily={"Libre Baskerville"} fontSize="2rem" mb="1.5rem">
+              Rosemary
+            </Text>
+          </Box>
+        </Container>
+      </Box>
+    </>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="src/components/Nav.tsx">
+import {
+  Box,
+  Image,
+  Heading,
+  UnorderedList,
+  ListItem,
+  Text,
+  Link,
+} from "@chakra-ui/react";
+import { useBoolean } from "@chakra-ui/hooks";
+import { NavLink as ReachLink } from "react-router";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import rosemary from "@/assets/rosemary.png";
+
+const Nav = () => {
+  const [isOpen, setIsOpen] = useBoolean();
+  return (
+    <>
+      {/* Navbar */}
+      <Box
+        as="nav"
+        width="100vw"
+        height="150px"
+        top="0"
+        bottom="0"
+        borderBottom="2px solid rgba(86, 86, 86, 0.8)"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        px={{ base: "0", lg: "3rem" }}
+        overflowX="hidden"
+        zIndex="6"
+        position="fixed"
+        bgColor="#FFFFFF"
+      >
+        {/*  Logo wrapper */}
+        <Box
+          display="flex"
+          flexDir="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Link
+            as={ReachLink}
+            to="/"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            _hover={{
+              textDecor: "none",
+            }}
+          >
+            <Image src={rosemary} alt="Rosemary" h="64px" w="64px" />
+            <Heading
+              fontWeight="600"
+              color="#00000"
+              fontFamily={"Libre Baskerville"}
+            >
+              Rosemary
+            </Heading>
+          </Link>
+        </Box>
+        {/*  End Logo wrapper */}
+        {/* Naviation Links */}
+        <UnorderedList
+          color={{ base: "#FFFFFF", lg: "#000000" }}
+          textTransform={{ base: "capitalize", lg: "uppercase" }}
+          pos={{ base: "fixed", lg: "static" }}
+          width={{ base: "100%", lg: "auto" }}
+          height={{ base: "100vh", lg: "auto" }}
+          top="0"
+          left="-16px"
+          display="flex"
+          flexDir={{ base: "column", lg: "row" }}
+          justifyContent="center"
+          alignItems="center"
+          backgroundColor={{ base: "rgba(65, 65, 65)", lg: "transparent" }}
+          opacity="87%"
+          transform={{
+            base: `${isOpen ? "translateX(0)" : "translateX(1000px)"}`,
+            lg: "translateX(0)",
+          }}
+          transition="0.5s ease"
+          zIndex="7"
+        >
+          <ListItem
+            fontFamily={{
+              base: "var(--Libre-Baskerville)",
+              lg: "var(--Bebas-Neue)",
+            }}
+            listStyleType="none"
+            my={{ base: "1.5rem", lg: "auto" }}
+            mx={{ base: "auto", lg: "1.5rem" }}
+            fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+            transition="0.5s ease"
+            letterSpacing={{ base: "auto", lg: "2px" }}
+          >
+            <Link
+              as={ReachLink}
+              to="/discover"
+              textDecor="none"
+              _hover={{
+                color: "#CD916D",
+                transition: "0.5s ease",
+              }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
+              }}
+            >
+              discover
+            </Link>
+          </ListItem>
+          <ListItem
+            fontFamily={{
+              base: "var(--Libre-Baskerville)",
+              lg: "var(--Bebas-Neue)",
+            }}
+            fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+            mx={{ base: "auto", lg: "1rem" }}
+            listStyleType="none"
+            transition="all 0.5s ease"
+            my={{ base: "1.5rem", lg: "auto" }}
+            letterSpacing={{ base: "auto", lg: "2px" }}
+          >
+            <Link
+              as={ReachLink}
+              to="/menu"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+              }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
+              }}
+            >
+              our menu
+            </Link>
+          </ListItem>
+          <ListItem
+            fontFamily={{
+              base: "var(--Libre-Baskerville)",
+              lg: "var(--Bebas-Neue)",
+            }}
+            fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+            listStyleType="none"
+            transition="all 0.5s ease"
+            my={{ base: "1.5rem", lg: "auto" }}
+            mx={{ base: "auto", lg: "1rem" }}
+            letterSpacing={{ base: "auto", lg: "2px" }}
+          >
+            <Link
+              as={ReachLink}
+              to="/contact"
+              textDecor="none"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+              }}
+              style={({ isActive }) => {
+                return {
+                  color: isActive ? "#CD916D" : "",
+                  borderBottom: isActive ? "1px solid #CD916D" : "",
+                };
+              }}
+            >
+              contact
+            </Link>
+          </ListItem>
+          <ListItem
+            listStyleType="none"
+            fontFamily={{
+              base: "var(--Libre-Baskerville)",
+              lg: "var(--Bebas-Neue)",
+            }}
+            fontSize={{ base: "1.8rem", lg: "1rem" }}
+            transition="all 0.5s ease"
+            my={{ base: "1.5rem", lg: "auto" }}
+            display={{ base: "block", lg: "none" }}
+          >
+            <Link
+              as={ReachLink}
+              to="/reservation"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+                borderBottom: "1px solid #CD916D",
+              }}
+              textDecor="none"
+            >
+              book reservation
+            </Link>
+          </ListItem>
+        </UnorderedList>
+        {/* End Naviation Links */}
+        {/* Hamburger */}
+        <Box
+          display={{ base: "flex", lg: "none" }}
+          flexDir="row"
+          alignItems="center"
+          marginTop={{ base: "0.5rem" }}
+          marginRight={{ base: "0.875rem" }}
+          zIndex="10"
+          transition="all 1s ease-in"
+        >
+          <Text
+            textTransform="uppercase"
+            color={isOpen ? "#FFFFFF" : "#000000"}
+            marginRight="0.2rem"
+            fontSize="1.3rem"
+            letterSpacing="2px"
+            lineHeight="1px"
+            style={{ fontFamily: "var(--Bebas-Neue)" }}
+            transition="all 1s ease-in"
+          >
+            {isOpen ? "close" : "menu"}
+          </Text>
+          <Box
+            display="flex"
+            flexDir="column"
+            justifyContent="space-evenly"
+            alignItems="center"
+            cursor="pointer"
+            h="50px"
+            w="50px"
+            transition="all 0.5s ease"
+            onClick={setIsOpen.toggle}
+          >
+            <Box
+              backgroundColor={isOpen ? "#FFFFFF" : "#000000"}
+              h="1px"
+              border={isOpen ? "1px solid #FFFFFF" : "1px solid #000000"}
+              w="60%"
+              borderRadius="12px"
+              transform={isOpen ? "rotate(45deg) translate(7px, 6px)" : ""}
+              transition="all 0.5s ease-in-out"
+            ></Box>
+            <Box
+              backgroundColor={isOpen ? "#FFFFFF" : "#000000"}
+              h="1px"
+              border={isOpen ? "1px solid #FFFFFF" : "1px solid #000000"}
+              w="60%"
+              borderRadius="12px"
+              transform={isOpen ? "rotate(-45deg) translate(6px, -6px)" : ""}
+              transition="all 0.5s ease-in-out"
+            ></Box>
+          </Box>
+        </Box>
+        {/* End Hamburger */}
+        <ButtonPrimary>book table</ButtonPrimary>
+      </Box>
+      {/* End Navbar */}
+    </>
+  );
+};
+
+export default Nav;
+</file>
+
+<file path="src/components/RootLayout.tsx">
+import { Outlet, useLocation } from "react-router";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import { useLayoutEffect } from "react";
+
+const RootLayout = () => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+  return (
+    <>
+      <Nav />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
+
+export default RootLayout;
+</file>
+
+<file path="src/pages/Homepage.tsx">
+import React from "react";
+import {
+  Box,
+  Image,
+  Heading,
+  UnorderedList,
+  ListItem,
+  Text,
+} from "@chakra-ui/react";
+import { Link } from "react-router";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import ButtonSecondary from "@/components/ButtonSecondary";
+import { useBoolean } from "@chakra-ui/hooks";
+import bgImage from "@/assets/resort.jpg";
+import rosemaryWhite from "@/assets/rosemary-white.png";
+import { motion } from "framer-motion";
+
+const MotionText = motion(Text);
+const MotionButtonSecondary = motion(ButtonSecondary);
+const MotionHeading = motion(Heading);
+
+const Homepage = () => {
+  const [isOpen, setIsOpen] = useBoolean();
+  return (
+    <>
+      <Box
+        as="header"
+        height="100vh"
+        bgBlendMode="darken"
+        bgPos="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        bgColor="rgba(0, 0, 0, 0.65)"
+        overflowX="hidden"
+        backgroundImage={bgImage}
+        // style={{ backgroundImage: `url(${bgImage})` }}
+        pos={{ base: "relative", lg: "static" }}
+      >
+        {/* Navbar */}
+        <Box
+          as="nav"
+          width="100vw"
+          height="150px"
+          borderBottom="2px solid rgba(233, 233, 233, 0.8)"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          px={{ base: "0", lg: "3rem" }}
+          overflowX="hidden"
+        >
+          {/*  Logo wrapper */}
+          <Box
+            display="flex"
+            flexDir="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Image src={rosemaryWhite} alt="Rosemary" />
+              <Heading fontWeight="600" color="#ffffff">
+                Rosemary
+              </Heading>
+            </Link>
+          </Box>
+          {/*  End Logo wrapper */}
+          {/* Naviation Links */}
+          <UnorderedList
+            color="white"
+            textTransform={{ base: "capitalize", lg: "uppercase" }}
+            position={{ base: "absolute", lg: "static" }}
+            width={{ base: "100%", lg: "auto" }}
+            height={{ base: "100%", lg: "auto" }}
+            top="0"
+            left="-16px"
+            display="flex"
+            flexDir={{ base: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            backgroundColor={{ base: "rgba(65, 65, 65)", lg: "transparent" }}
+            opacity="87%"
+            transform={{
+              base: `${isOpen ? "translateX(0)" : "translateX(1000px)"}`,
+              lg: "translateX(0)",
+            }}
+            transition="0.5s ease"
+          >
+            <ListItem
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
+              listStyleType="none"
+              my={{ base: "1.5rem", lg: "auto" }}
+              mx={{ base: "auto", lg: "1.5rem" }}
+              _hover={{
+                color: "#CD916D",
+                transition: "0.5s ease",
+              }}
+              fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+              transition="0.5s ease"
+              letterSpacing={{ base: "auto", lg: "2px" }}
+            >
+              <Link to="/discover">discover</Link>
+            </ListItem>
+            <ListItem
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
+              fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+              mx={{ base: "auto", lg: "1rem" }}
+              listStyleType="none"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+              }}
+              transition="all 0.5s ease"
+              my={{ base: "1.5rem", lg: "auto" }}
+              letterSpacing={{ base: "auto", lg: "2px" }}
+            >
+              <Link to="/menu">our menu</Link>
+            </ListItem>
+            <ListItem
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
+              fontSize={{ base: "1.8rem", lg: "1.6rem" }}
+              listStyleType="none"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+              }}
+              transition="all 0.5s ease"
+              my={{ base: "1.5rem", lg: "auto" }}
+              mx={{ base: "auto", lg: "1rem" }}
+              letterSpacing={{ base: "auto", lg: "2px" }}
+            >
+              <Link to="/contact">contact</Link>
+            </ListItem>
+            <ListItem
+              listStyleType="none"
+              fontFamily={{
+                base: "var(--Libre-Baskerville)",
+                lg: "var(--Bebas-Neue)",
+              }}
+              fontSize={{ base: "1.8rem", lg: "1rem" }}
+              borderBottom="1px solid white"
+              _hover={{
+                transition: "0.5s ease",
+                color: "#CD916D",
+                borderBottom: "1px solid #CD916D",
+              }}
+              transition="all 0.5s ease"
+              my={{ base: "1.5rem", lg: "auto" }}
+              display={{ base: "block", lg: "none" }}
+            >
+              <Link to="/reservation">book reservation</Link>
+            </ListItem>
+          </UnorderedList>
+          {/* End Naviation Links */}
+          {/* Hamburger */}
+          <Box
+            display={{ base: "flex", lg: "none" }}
+            flexDir="row"
+            alignItems="center"
+            marginTop={{ base: "0.5rem" }}
+            marginRight={{ base: "0.875rem" }}
+            zIndex="4"
+          >
+            <Text
+              textTransform="uppercase"
+              color="white"
+              marginRight="0.2rem"
+              fontSize="1.3rem"
+              letterSpacing="2px"
+              lineHeight="1px"
+              style={{ fontFamily: "var(--Bebas-Neue)" }}
+            >
+              {isOpen ? "close" : "menu"}
+            </Text>
+            <Box
+              display="flex"
+              flexDir="column"
+              justifyContent="space-evenly"
+              alignItems="center"
+              cursor="pointer"
+              height="50px"
+              width="50px"
+              transition="all 0.5s ease"
+              onClick={setIsOpen.toggle}
+            >
+              <Box
+                backgroundColor="white"
+                height="1px"
+                border="1px solid white"
+                width="60%"
+                borderRadius="12px"
+                transform={isOpen ? "rotate(45deg) translate(7px, 6px)" : ""}
+                transition="all 0.5s ease"
+              ></Box>
+              <Box
+                backgroundColor="white"
+                height="1px"
+                border="1px solid white"
+                width="60%"
+                borderRadius="12px"
+                transform={isOpen ? "rotate(-45deg) translate(6px, -6px)" : ""}
+                transition="all 0.5s ease"
+              ></Box>
+            </Box>
+          </Box>
+          {/* End Hamburger */}
+          <ButtonPrimary>book table</ButtonPrimary>
+        </Box>
+        {/* End Navbar */}
+        <Box
+          maxWidth="80%"
+          marginTop={{
+            base: "7rem",
+            md: "20rem",
+            lg: "13rem",
+          }}
+          marginLeft={{ base: "1.4rem", lg: "4.5rem" }}
+          display={isOpen ? "none" : "block"}
+          transition="all 1s ease-in-out"
+        >
+          <MotionHeading
+            color="#CD916D"
+            fontFamily="var(--Bebas-Neue)"
+            letterSpacing="1.5px"
+            fontWeight="500"
+            textTransform="uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            rosemary restaurant
+          </MotionHeading>
+          <MotionText
+            color="white"
+            fontFamily={'"Libre Baskerville", serif'}
+            fontSize="25px"
+            my="1rem"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            "A good restaurant is like a vacation; it transports you, and it
+            becomes a lot more than just about the food"
+          </MotionText>
+          <MotionButtonSecondary>check the menu</MotionButtonSecondary>
+        </Box>
+      </Box>
+    </>
+  );
+};
+
+export default Homepage;
+</file>
+
+<file path="src/router/index.tsx">
+import { createBrowserRouter } from "react-router";
+import Homepage from "@/pages/Homepage";
+import Discover from "@/pages/Discover";
+import RootLayout from "@/components/RootLayout";
+import OurMenu from "@/pages/OurMenu";
+import Contact from "@/pages/Contact";
+import Reservation from "@/pages/Reservation";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Homepage />,
+  },
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/discover",
+        element: <Discover />,
+      },
+      // {
+      //   path: "/menu",
+      //   element: <OurMenu />,
+      // },
+      // {
+      //   path: "/contact",
+      //   element: <Contact />,
+      // },
+      // {
+      //   path: "/reservation",
+      //   element: <Reservation />,
+      // },
+    ],
+  },
+]);
+
+export default router;
+</file>
+
+<file path="src/utils/interface/IValidate.tsx">
+export interface IValidate {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  person?: number | undefined;
+  date?: string;
+  time?: string;
+}
+</file>
+
+<file path="src/utils/constants.tsx">
+import type { IValidate } from "./interface/IValidate";
+
+export const baseUrl = "https://rosemary.svrhr.my.id";
+export const getCategoriesUrl = `${baseUrl}/api/categories`;
+export const getMenuUrl = `${baseUrl}/api/menus`;
+export const getOpeningHoursUrl = `${baseUrl}/reservation/opening-hours`;
+export const submitSubscriptionUrl = `${baseUrl}/newsletter/add`;
+export const submitReservationUrl = `${baseUrl}/reservation/add`;
+export const contactUrl = `${baseUrl}/api/contact`;
+export const validate = (values: IValidate) => {
+  const errors: Partial<Record<keyof IValidate, string>> = {};
+  if (!values.firstName) {
+    errors.firstName = "Please enter first name";
+  }
+  if (!values.lastName) {
+    errors.lastName = "Please enter last name";
+  }
+  if (!values.email) {
+    errors.email = "Please enter email";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  if (!values.person || values.person < 1 || values.person > 11) {
+    errors.person = "Number of persons must be between 1-11";
+  }
+  if (!values.date) {
+    errors.date = "Please select date";
+  } else if (values.date && values.date < new Date().toISOString().split("T")[0]) {
+    errors.date = "Date must be greater than today";
+  }
+  if (!values.time) {
+    errors.time = "Please select time";
+  }
+  return errors;
+};
+</file>
+
+<file path="src/App.tsx">
+import { RouterProvider } from "react-router";
+import router from "./router";
+
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;
+</file>
+
+<file path="src/main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { ChakraProvider } from '@chakra-ui/react'
+import App from './App.tsx'
+import theme from './theme.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
+  </StrictMode>,
+)
+</file>
+
+<file path="src/theme.tsx">
+import { extendTheme } from "@chakra-ui/react";
+import "@fontsource/bebas-neue";
+import "@fontsource/libre-baskerville";
+import "@fontsource-variable/montserrat";
+import "@fontsource/poppins";
+
+const theme = extendTheme({
+  fonts: {
+    heading: '"Libre Baskerville", serif',
+    body: '"Bebas Neue", sans-serif',
+    components: {
+      Text: {
+        baseStyle: {
+          fontFamily: '"Libre Baskerville", serif',
+        },
+      },
+    },
+  },
+});
+
+export default theme;
+</file>
+
+<file path=".prettierrc">
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  // Tambahkan baris di bawah ini
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+</file>
+
+<file path="tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="vite.config.ts">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler']],
+      },
+    }),
+  ],
+})
+</file>
+
+<file path="eslint.config.js">
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
+import prettierConfig from "eslint-config-prettier";
+
+export default tseslint.config(
+  { ignores: ["dist"] },
+  ...tseslint.configs.recommended,
+  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+  { plugins: { "react-hooks": reactHooks } },
+  {
+    plugins: { "react-refresh": reactRefresh },
+    rules: { "react-refresh/only-export-components": "warn" },
+  },
+  // Letakkan prettierConfig di paling akhir
+  // untuk menonaktifkan aturan yang konflik.
+  prettierConfig
+);
+</file>
+
+<file path="public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path=".github/workflows/Deploy.yml">
+name: CI/CD - Deploying to CPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy-git-ftp:
+    name: 🎉 Deploy to CPanel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: ⚙️ Build project
+        run: npm run build
+
+      - name: 📂 Deploy build folder via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "./dist/"
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://ik.imagekit.io">
+  <meta name="google-site-verification" content="0B36jF6hFo1cC1ahnEa9Va7t6RKWXKuPzCKaP0kIYyY" />
+  <!-- Primary Meta Tags -->
+  <title>Rosemary Restaurant | Book Fine Dining Reservations Online</title>
+  <meta name="title" content="Rosemary Restaurant | Book Fine Dining Reservations Online">
+  <meta name="description"
+    content="Reserve your table at Rosemary Restaurant - Experience exquisite cuisine in an elegant atmosphere. Online booking available for lunch, dinner, and special events.">
+  <meta name="keywords"
+    content="restaurant booking, fine dining, online reservation, gourmet food, romantic dinner, business lunch, special occasions">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rosemary-restaurant.svrhr.my.id">
+  <meta property="og:title" content="Rosemary Restaurant | Book Fine Dining Reservations Online">
+  <meta property="og:description"
+    content="Reserve your table at Rosemary Restaurant - Experience exquisite cuisine in an elegant atmosphere. Online booking available for lunch, dinner, and special events.">
+  <meta property="og:image"
+    content="https://ik.imagekit.io/jpceyj4l1al/Rosemary/rosemary-min_DEt3NmbuR.png?updatedAt=1642496262068">
+  <meta property="og:image:alt" content="Rosemary Restaurant Interior">
+  <meta property="og:site_name" content="Rosemary Restaurant">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rosemary-restaurant.svrhr.my.id">
+  <meta property="twitter:title" content="Rosemary Restaurant | Book Fine Dining Reservations Online">
+  <meta property="twitter:description"
+    content="Reserve your table at Rosemary Restaurant - Experience exquisite cuisine in an elegant atmosphere. Online booking available for lunch, dinner, and special events.">
+  <meta property="twitter:image"
+    content="https://ik.imagekit.io/jpceyj4l1al/Rosemary/rosemary-min_DEt3NmbuR.png?updatedAt=1642496262068">
+  <meta property="twitter:image:alt" content="Rosemary Restaurant Interior">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://rosemary-restaurant.svrhr.my.id" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## React Compiler
+
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+
+Note: This will impact Vite dev & build performances.
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+</file>
+
+<file path="package.json">
+{
+  "name": "rosemary",
+  "homepage": "https://rosemary-restaurant.svrhr.my.id",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "GENERATE_SOURCEMAP=false && tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.10.7",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource-variable/montserrat": "^5.2.8",
+    "@fontsource/bebas-neue": "^5.2.7",
+    "@fontsource/libre-baskerville": "^5.2.9",
+    "@fontsource/poppins": "^5.2.7",
+    "@reduxjs/toolkit": "^2.10.1",
+    "formik": "^2.4.6",
+    "framer-motion": "^12.10.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4"
+  }
+}
+</file>
+
+</files>

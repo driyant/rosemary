@@ -1,3 +1,5 @@
+import type { IValidate } from "./interface/IValidate";
+
 export const baseUrl = "https://rosemary.svrhr.my.id";
 export const getCategoriesUrl = `${baseUrl}/api/categories`;
 export const getMenuUrl = `${baseUrl}/api/menus`;
@@ -5,8 +7,8 @@ export const getOpeningHoursUrl = `${baseUrl}/reservation/opening-hours`;
 export const submitSubscriptionUrl = `${baseUrl}/newsletter/add`;
 export const submitReservationUrl = `${baseUrl}/reservation/add`;
 export const contactUrl = `${baseUrl}/api/contact`;
-export const validate = (values) => {
-  const errors = {};
+export const validate = (values: IValidate) => {
+  const errors: Partial<Record<keyof IValidate, string>> = {};
   if (!values.firstName) {
     errors.firstName = "Please enter first name";
   }
@@ -23,7 +25,7 @@ export const validate = (values) => {
   }
   if (!values.date) {
     errors.date = "Please select date";
-  } else if (values.date < new Date().toISOString().split("T")[0]) {
+  } else if (values.date && values.date < new Date().toISOString().split("T")[0]) {
     errors.date = "Date must be greater than today";
   }
   if (!values.time) {

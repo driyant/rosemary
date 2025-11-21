@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router";
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { useLayoutEffect } from "react";
 
 const RootLayout = () => {

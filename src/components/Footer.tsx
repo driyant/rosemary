@@ -14,13 +14,14 @@ import { CgFacebook } from "react-icons/cg";
 import { IoLogoInstagram } from "react-icons/io";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { useToast, Spinner } from "@chakra-ui/react";
-import { submitSubscriptionUrl } from "@/utils/constant";
+import { submitSubscriptionUrl } from "@/utils/constants";
 
 const Footer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [newsletterInput, setNewsletterInput] = useState("");
   const toast = useToast();
-  const showToast = (title, description, status) => {
+
+  const showToast = (title: string, description: string, status: string) => {
     toast({
       title: title,
       description: description,
@@ -32,7 +33,7 @@ const Footer = () => {
   const newsletterInputIsValid =
     newsletterInput.trim() !== "" && newsletterInput.includes("@");
 
-  const sendNewsletter = async (newslettersData) => {
+  const sendNewsletter = async (newslettersData: any) => {
     setIsLoading(true);
     try {
       const response = await fetch(`${submitSubscriptionUrl}`, {
@@ -51,7 +52,7 @@ const Footer = () => {
       return { success: true, data };
     } catch (error) {
       console.error("Failed to send newsletter:", error);
-      return { success: false, error: error.message };
+      return { success: false, error: error?.message as any };
     } finally {
       setIsLoading(false);
     }
@@ -149,6 +150,7 @@ const Footer = () => {
                 letterSpacing="2px"
                 variant="flushed"
                 color="#FFFFFF"
+                // @ts-ignore
                 isRequiredisplay={true}
                 onChange={(e) => setNewsletterInput(e.target.value)}
                 value={newsletterInput}
