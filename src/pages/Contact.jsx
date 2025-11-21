@@ -15,6 +15,7 @@ import { useToast, Spinner } from "@chakra-ui/react";
 import nature from "@/assets/nature.jpg";
 import { useFormik } from "formik";
 import { contactUrl } from "../utils/constant";
+import WrapperTitle from "../components/Wrapper";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -101,6 +102,7 @@ const Contact = () => {
 
   return (
     <>
+      <WrapperTitle title="Contact Us" />
       <Header bgImage={nature} bgColor="rgba(0, 0, 0, 0.5)">
         <Box
           textAlign="center"
@@ -249,6 +251,7 @@ const Contact = () => {
         </Container>
       </Box>
       <SectionService />
+      <WrapperTitle />
     </>
   );
 };

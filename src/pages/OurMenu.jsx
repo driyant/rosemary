@@ -7,6 +7,7 @@ import { Box, Heading, Text, Container, Spinner } from "@chakra-ui/react";
 import restaurantImage from "@/assets/restaurant-1.jpg";
 import useIndexStore from "@/store";
 import { getMenuUrl } from "@/utils/constant";
+import WrapperTitle from "@/components/Wrapper";
 
 const OurMenu = () => {
   const categories = useIndexStore((state) => state.categories);
@@ -54,76 +55,83 @@ const OurMenu = () => {
 
   return (
     <>
-      <Header bgImage={restaurantImage} bgColor="rgba(0, 0, 0, 0.4)">
-        <Box
-          textAlign="center"
-          display="flex"
-          flexFlow="column nowrap"
-          maxWidth="80%"
-        >
-          <Heading
-            as="h4"
-            fontWeight="500"
-            fontFamily={"Bebas Neue"}
-            fontSize="2rem"
-            mb="1rem"
-            letterSpacing="2px"
-          >
-            Our Menu
-          </Heading>
-          <Text
-            fontSize="1.2rem"
-            fontFamily={"Libre Baskerville"}
-            alt=" Mickey Gilley"
-          >
-            If you have good food, people will come to your restaurant.
-          </Text>
-        </Box>
-      </Header>
-      <Box as="main" display="flex" justifyContent="center" alignItems="center">
-        <Container my={{ base: "2rem", lg: "5rem" }} maxWidth={{ lg: "90%" }}>
+      <WrapperTitle title="Our Menu">
+        <Header bgImage={restaurantImage} bgColor="rgba(0, 0, 0, 0.4)">
           <Box
+            textAlign="center"
             display="flex"
-            justifyContent="center"
-            alignItems="center"
             flexFlow="column nowrap"
-          ></Box>
-
-          {categories.length > 0 && (
-            <Category
-              categories={categories}
-              filterCategories={filterCategories}
-              activeLink={activeLink}
-            />
-          )}
-
-          {isMenuLoading && (
+            maxWidth="80%"
+          >
+            <Heading
+              as="h4"
+              fontWeight="500"
+              fontFamily={"Bebas Neue"}
+              fontSize="2rem"
+              mb="1rem"
+              letterSpacing="2px"
+            >
+              Our Menu
+            </Heading>
+            <Text
+              fontSize="1.2rem"
+              fontFamily={"Libre Baskerville"}
+              alt=" Mickey Gilley"
+            >
+              If you have good food, people will come to your restaurant.
+            </Text>
+          </Box>
+        </Header>
+        <Box
+          as="main"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Container my={{ base: "2rem", lg: "5rem" }} maxWidth={{ lg: "90%" }}>
             <Box
-              mx="auto"
               display="flex"
-              flexFlow="column"
               justifyContent="center"
               alignItems="center"
-            >
-              <Spinner mx="auto" color="#CD916D" mb="1rem" size="md" />
-              <Text
+              flexFlow="column nowrap"
+            ></Box>
+
+            {categories.length > 0 && (
+              <Category
+                categories={categories}
+                filterCategories={filterCategories}
+                activeLink={activeLink}
+              />
+            )}
+
+            {isMenuLoading && (
+              <Box
                 mx="auto"
-                fontFamily={"Bebas Neue"}
-                fontSize="1.2rem"
-                letterSpacing="2px"
+                display="flex"
+                flexFlow="column"
+                justifyContent="center"
+                alignItems="center"
               >
-                Loading Menu.....
-              </Text>
-            </Box>
-          )}
-          {!isMenuLoading && <Menu menus={filteredMenu} />}
-          {/* <Menu
+                <Spinner mx="auto" color="#CD916D" mb="1rem" size="md" />
+                <Text
+                  mx="auto"
+                  fontFamily={"Bebas Neue"}
+                  fontSize="1.2rem"
+                  letterSpacing="2px"
+                >
+                  Loading Menu.....
+                </Text>
+              </Box>
+            )}
+            {!isMenuLoading && <Menu menus={filteredMenu} />}
+            {/* <Menu
             menus={!filteredMenu ? menu : filteredMenu}
             isMenuLoading={isMenuLoading}
           /> */}
-        </Container>
-      </Box>
-      <SectionService />
+          </Container>
+        </Box>
+        <SectionService />
+      </WrapperTitle>
     </>
   );
 };
