@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Category from "@/components/Category";
 import Menu from "@/components/Menu";
@@ -6,7 +6,7 @@ import SectionService from "@/components/SectionService";
 import { Box, Heading, Text, Container, Spinner } from "@chakra-ui/react";
 import restaurantImage from "@/assets/restaurant-1.jpg";
 import useIndexStore from "@/store";
-import { baseUrl, getCategoriesUrl, getMenuUrl } from "@/utils/constant";
+import { getMenuUrl } from "@/utils/constant";
 
 const OurMenu = () => {
   const categories = useIndexStore((state) => state.categories);
@@ -15,24 +15,7 @@ const OurMenu = () => {
   const setMenu = useIndexStore((state) => state.setMenu);
   const [filteredMenu, setFilteredMenu] = useState(menu);
   const [activeLink, setActiveLink] = useState("all");
-  const [isCategoryLoading, setIsCategoryLoading] = useState(false);
   const [isMenuLoading, setIsMenuLoading] = useState(false);
-
-  const fetchCategories = async () => {
-    try {
-      setIsCategoryLoading(true);
-      const resp = await fetch(`${getCategoriesUrl}`);
-      const data = await resp.json();
-      if (resp.ok) {
-        const newCategories = ["all", ...data.map((el) => el.name)];
-        setCategories(newCategories);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsCategoryLoading(false);
-    }
-  };
 
   const fetchMenu = async () => {
     try {
@@ -42,6 +25,10 @@ const OurMenu = () => {
       if (resp.ok) {
         setMenu(data);
         setFilteredMenu(data);
+        const uniqueCategories = [
+          ...new Set(data.map((item) => item.category.name)),
+        ];
+        setCategories(uniqueCategories);
       }
     } catch (error) {
       console.log(error);
@@ -51,16 +38,8 @@ const OurMenu = () => {
   };
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        fetchCategories();
-        fetchMenu();
-      } catch (error) {
-        console.error("Failed to load initial data:", error);
-      }
-    };
-    loadData();
-  }, []);
+    fetchMenu();
+  }, [setMenu, setCategories]);
 
   const filterCategories = (category) => {
     if (category === "all") {
@@ -108,30 +87,9 @@ const OurMenu = () => {
             justifyContent="center"
             alignItems="center"
             flexFlow="column nowrap"
-          >
-            {isCategoryLoading && (
-              <Box
-                mx="auto"
-                display="flex"
-                flexFlow="column"
-                justifyContent="center"
-                alignItems="center"
-                mb="1.5rem"
-              >
-                <Spinner mx="auto" color="#CD916D" mb="1rem" size="sm" />
-                <Text
-                  fontFamily={"Bebas Neue"}
-                  fontSize="1.2rem"
-                  letterSpacing="2px"
-                  mx="auto"
-                >
-                  Loading Categories.....
-                </Text>
-              </Box>
-            )}
-          </Box>
+          ></Box>
 
-          {!isCategoryLoading && (
+          {categories.length > 0 && (
             <Category
               categories={categories}
               filterCategories={filterCategories}

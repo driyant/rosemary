@@ -1,9 +1,8 @@
 export const baseUrl = "https://rosemary.svrhr.my.id";
-export const getCategoriesUrl = `${baseUrl}/api/categories`;
-export const getMenuUrl = `${baseUrl}/api/menus`;
-export const getOpeningHoursUrl = `${baseUrl}/reservation/opening-hours`;
-export const submitSubscriptionUrl = `${baseUrl}/newsletter/add`;
-export const submitReservationUrl = `${baseUrl}/reservation/add`;
+export const getMenuUrl = `${baseUrl}/api/menu`;
+export const getOpeningHoursUrl = `${baseUrl}/api/reservation/opening-hours`;
+export const submitSubscriptionUrl = `${baseUrl}/api/newsletter`;
+export const submitReservationUrl = `${baseUrl}/api/reservation`;
 export const contactUrl = `${baseUrl}/api/contact`;
 export const validate = (values) => {
   const errors = {};
