@@ -27,6 +27,7 @@ const OurMenu = () => {
         setMenu(data);
         setFilteredMenu(data);
         const uniqueCategories = [
+          "all",
           ...new Set(data.map((item) => item.category.name)),
         ];
         setCategories(uniqueCategories);
@@ -40,9 +41,10 @@ const OurMenu = () => {
 
   useEffect(() => {
     fetchMenu();
-  }, [setMenu, setCategories]);
+  }, []);
 
   const filterCategories = (category) => {
+    // console.log(category);
     if (category === "all") {
       setActiveLink("all");
       setFilteredMenu(menu);
